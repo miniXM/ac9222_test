@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+*.egg-link
+.venv/
+venv/
+build/
+dist/
+*.safetensors
+*.safetensors.index.json.bak
+*.bin
+*.pt
+*.tar.gz
+.DS_Store
+.pytest_cache/

@@ -1,0 +1,21 @@
+INFO 10-05 01:20:54 [importing.py:88] Triton not installed or not compatible; certain GPU-related functions will not be available.
+ERROR 10-05 01:20:56 [config.py:29] Failed to import Triton kernels. Please make sure your triton version is compatible. Error: No module named 'triton'
+INFO 10-05 01:20:57 [patch.py:252] NVFP4 W4A4 weight_scale NaN-clamp: installed.
+INFO 10-05 01:20:57 [patch.py:481] [cumem-cuda] CuMemAllocator._python_free_callback patched: asleep guard extended to all platforms.
+WARNING 10-05 01:21:00 [ring_globals.py:73] FlashInfer is unavailable; falling back to other attention backends. Reason: No module named 'flashinfer'
+The config attributes {'vae_ratio': 16, 'vae_ratio_t': 4} were passed to AutoencoderKLLegacy, but are not expected and will be ignored. Please verify your config.json configuration file.
+VAE loaded
+C= 24 latent_channels
+RAW from encode_images: (24, 1, 16, 16) torch.float16
+z (raw latent): (1, 24, 1, 16, 16) finite= True min=-5.293 max=5.996 mean=-0.1866 std=1.8786
+zn (normalized): mean=-0.0578 std=1.0742
+z12: (1, 24, 12, 16, 16)
+[fp16_autocast] out=(1, 3, 39, 256, 256) finite=True min=0.0000 max=1.0000 mean=0.6385 peak=14.43GiB
+PSNR[fp16_autocast] mean=15.45 dB  min=13.01  max=31.42  (frames=39, 256x256)
+   detail[fp16_autocast] adjacent-px-diff=0.00661  within-block=0.03035  across-block=0.12631
+   temporal[fp16_autocast] frame-to-frame diff=0.04630
+[fp32] out=(1, 3, 39, 256, 256) finite=True min=0.0000 max=1.0000 mean=0.6385 peak=10.05GiB
+PSNR[fp32] mean=15.45 dB  min=13.01  max=31.42  (frames=39, 256x256)
+   detail[fp32] adjacent-px-diff=0.00661  within-block=0.03035  across-block=0.12632
+   temporal[fp32] frame-to-frame diff=0.04632
+DONE_OK

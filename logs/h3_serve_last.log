@@ -1,0 +1,234 @@
+INFO 10-05 02:14:05 [importing.py:88] Triton not installed or not compatible; certain GPU-related functions will not be available.
+ERROR 10-05 02:14:07 [config.py:29] Failed to import Triton kernels. Please make sure your triton version is compatible. Error: No module named 'triton'
+INFO 10-05 02:14:08 [patch.py:252] NVFP4 W4A4 weight_scale NaN-clamp: installed.
+INFO 10-05 02:14:08 [patch.py:481] [cumem-cuda] CuMemAllocator._python_free_callback patched: asleep guard extended to all platforms.
+INFO 10-05 02:14:13 [serve.py:175] Detected diffusion model: /srv/models/MiniMax-H3-FP8/Ref2VA
+--- Logging error ---
+Traceback (most recent call last):
+  File "/opt/conda/envs/vllm/lib/python3.12/logging/__init__.py", line 1163, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode character '\u2588' in position 45: ordinal not in range(256)
+Call stack:
+  File "/srv/omni/venv/bin/vllm-omni", line 6, in <module>
+    sys.exit(main())
+  File "/srv/omni/src/vllm-omni-0.26.0/vllm_omni/entrypoints/cli/main.py", line 72, in main
+    args.dispatch_function(args)
+  File "/srv/omni/src/vllm-omni-0.26.0/vllm_omni/entrypoints/cli/serve.py", line 89, in cmd
+    log_logo()
+  File "/srv/omni/src/vllm-omni-0.26.0/vllm_omni/entrypoints/cli/logo.py", line 52, in log_logo
+    logger.info(logo)
+Message: '       \x1b[97m\u2588     \u2588     \u2588\u2584   \u2584\u2588\x1b[0m    \x1b[34m   \u2584\u2580\u2580\x1b[38;5;208m\u2580\u2580\u2584 \x1b[0m\x1b[97m\u2588\u2584   \u2584\u2588 \u2588\u2584    \u2588 \u2580\u2588\u2580 \x1b[0m\n \x1b[38;5;208m\u2584\u2584\x1b[0m \x1b[34m\u2584\u2588\x1b[0m \x1b[97m\u2588     \u2588     \u2588 \u2580\u2584\u2580 \u2588\x1b[0m\x1b[97m  \u2584\u2584\u2584 \x1b[0m\x1b[34m \u2588    \x1b[38;5;208m\u2588 \x1b[0m\x1b[97m\u2588 \u2580\u2584\u2580 \u2588 \u2588 \u2580\u2584  \u2588  \u2588  \x1b[0m\n  \x1b[38;5;208m\u2588\x1b[0m\x1b[34m\u2584\u2588\u2580\x1b[0m \x1b[97m\u2588     \u2588     \u2588     \u2588\x1b[0m\x1b[97m      \x1b[0m\x1b[34m \u2588    \x1b[38;5;208m\u2588 \x1b[0m\x1b[97m\u2588     \u2588 \u2588   \u2580\u2584\u2588  \u2588  \x1b[0m\n   \x1b[34m\u2580\u2580\x1b[0m  \x1b[97m\u2580\u2580\u2580\u2580\u2580 \u2580\u2580\u2580\u2580\u2580 \u2580     \u2580\x1b[0m      \x1b[35m  \u2580\u2580\u2580\u2580  \x1b[0m\x1b[97m\u2580     \u2580 \u2580     \u2580 \u2580\u2580\u2580 \x1b[0m\n'
+Arguments: ()
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:14:13 [api_utils.py:345] vLLM server version 0.26.0, serving model /srv/models/MiniMax-H3-FP8/Ref2VA
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:14:13 [api_utils.py:273] non-default args: {'model_tag': '/srv/models/MiniMax-H3-FP8/Ref2VA', 'model': '/srv/models/MiniMax-H3-FP8/Ref2VA', 'tensor_parallel_size': 4}
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:14:13 [omni_base.py:172] [AsyncOmni] Initializing with model /srv/models/MiniMax-H3-FP8/Ref2VA
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:14:13 [async_omni_engine.py:175] [AsyncOmniEngine] Initializing with model /srv/models/MiniMax-H3-FP8/Ref2VA
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:14:13 [async_omni_engine.py:274] [AsyncOmniEngine] Launching Orchestrator thread with 1 stages
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:14:13 [factory.py:389] Building quantization config: modelopt
+[0;36m(APIServer pid=282842)[0;0m ERROR 10-05 02:14:13 [mxfp4.py:56] Failed to import Triton kernels. Please make sure your triton version is compatible. Error: No module named 'triton'
+[0;36m(APIServer pid=282842)[0;0m WARNING 10-05 02:14:14 [modelopt.py:385] Detected ModelOpt fp8 checkpoint (quant_algo=FP8_PER_CHANNEL_PER_TOKEN). Please note that the format is experimental and could change.
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:14:14 [data.py:1058] Auto-detected quantization 'modelopt' from model config
+[0;36m(APIServer pid=282842)[0;0m WARNING 10-05 02:14:14 [ring_globals.py:73] FlashInfer is unavailable; falling back to other attention backends. Reason: No module named 'flashinfer'
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:14:15 [multiproc_executor.py:254] Starting server...
+[32mINFO[0m [90m10-05 02:14:25[0m [90m[importing.py:88][0m Triton not installed or not compatible; certain GPU-related functions will not be available.
+[32mINFO[0m [90m10-05 02:14:25[0m [90m[importing.py:88][0m Triton not installed or not compatible; certain GPU-related functions will not be available.
+[32mINFO[0m [90m10-05 02:14:25[0m [90m[importing.py:88][0m Triton not installed or not compatible; certain GPU-related functions will not be available.
+[32mINFO[0m [90m10-05 02:14:25[0m [90m[importing.py:88][0m Triton not installed or not compatible; certain GPU-related functions will not be available.
+[31mERROR[0m [90m10-05 02:14:26[0m [90m[config.py:29][0m Failed to import Triton kernels. Please make sure your triton version is compatible. Error: No module named 'triton'
+[31mERROR[0m [90m10-05 02:14:27[0m [90m[config.py:29][0m Failed to import Triton kernels. Please make sure your triton version is compatible. Error: No module named 'triton'
+[31mERROR[0m [90m10-05 02:14:27[0m [90m[config.py:29][0m Failed to import Triton kernels. Please make sure your triton version is compatible. Error: No module named 'triton'
+[31mERROR[0m [90m10-05 02:14:27[0m [90m[config.py:29][0m Failed to import Triton kernels. Please make sure your triton version is compatible. Error: No module named 'triton'
+[32mINFO[0m [90m10-05 02:14:27[0m [90m[patch.py:252][0m NVFP4 W4A4 weight_scale NaN-clamp: installed.
+[32mINFO[0m [90m10-05 02:14:27[0m [90m[patch.py:252][0m NVFP4 W4A4 weight_scale NaN-clamp: installed.
+[32mINFO[0m [90m10-05 02:14:27[0m [90m[patch.py:252][0m NVFP4 W4A4 weight_scale NaN-clamp: installed.
+[32mINFO[0m [90m10-05 02:14:27[0m [90m[patch.py:252][0m NVFP4 W4A4 weight_scale NaN-clamp: installed.
+[32mINFO[0m [90m10-05 02:14:27[0m [90m[patch.py:481][0m [cumem-cuda] CuMemAllocator._python_free_callback patched: asleep guard extended to all platforms.
+[32mINFO[0m [90m10-05 02:14:27[0m [90m[patch.py:481][0m [cumem-cuda] CuMemAllocator._python_free_callback patched: asleep guard extended to all platforms.
+[32mINFO[0m [90m10-05 02:14:27[0m [90m[patch.py:481][0m [cumem-cuda] CuMemAllocator._python_free_callback patched: asleep guard extended to all platforms.
+[32mINFO[0m [90m10-05 02:14:27[0m [90m[patch.py:481][0m [cumem-cuda] CuMemAllocator._python_free_callback patched: asleep guard extended to all platforms.
+[32mINFO[0m [90m10-05 02:14:33[0m [90m[diffusion_worker.py:819][0m Worker 2 created result MessageQueue
+[32mINFO[0m [90m10-05 02:14:33[0m [90m[diffusion_worker.py:819][0m Worker 3 created result MessageQueue
+[32mINFO[0m [90m10-05 02:14:33[0m [90m[diffusion_worker.py:819][0m Worker 0 created result MessageQueue
+[32mINFO[0m [90m10-05 02:14:33[0m [90m[scheduler.py:252][0m Chunked prefill is enabled with max_num_batched_tokens=2048.
+[32mINFO[0m [90m10-05 02:14:33[0m [90m[scheduler.py:252][0m Chunked prefill is enabled with max_num_batched_tokens=2048.
+[32mINFO[0m [90m10-05 02:14:33[0m [90m[vllm.py:1109][0m Asynchronous scheduling is enabled.
+[32mINFO[0m [90m10-05 02:14:33[0m [90m[vllm.py:1109][0m Asynchronous scheduling is enabled.
+[32mINFO[0m [90m10-05 02:14:33[0m [90m[kernel.py:295][0m Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+[32mINFO[0m [90m10-05 02:14:33[0m [90m[kernel.py:295][0m Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+[32mINFO[0m [90m10-05 02:14:33[0m [90m[diffusion_worker.py:303][0m Final IR op priority after setting vLLM-Omni overrides: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'])
+[32mINFO[0m [90m10-05 02:14:33[0m [90m[diffusion_worker.py:303][0m Final IR op priority after setting vLLM-Omni overrides: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'])
+[32mINFO[0m [90m10-05 02:14:33[0m [90m[scheduler.py:252][0m Chunked prefill is enabled with max_num_batched_tokens=2048.
+[32mINFO[0m [90m10-05 02:14:33[0m [90m[vllm.py:1109][0m Asynchronous scheduling is enabled.
+[32mINFO[0m [90m10-05 02:14:33[0m [90m[kernel.py:295][0m Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+[32mINFO[0m [90m10-05 02:14:33[0m [90m[diffusion_worker.py:303][0m Final IR op priority after setting vLLM-Omni overrides: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'])
+[32mINFO[0m [90m10-05 02:14:33[0m [90m[diffusion_worker.py:819][0m Worker 1 created result MessageQueue
+[32mINFO[0m [90m10-05 02:14:33[0m [90m[scheduler.py:252][0m Chunked prefill is enabled with max_num_batched_tokens=2048.
+[32mINFO[0m [90m10-05 02:14:33[0m [90m[vllm.py:1109][0m Asynchronous scheduling is enabled.
+[32mINFO[0m [90m10-05 02:14:33[0m [90m[kernel.py:295][0m Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+[32mINFO[0m [90m10-05 02:14:33[0m [90m[diffusion_worker.py:303][0m Final IR op priority after setting vLLM-Omni overrides: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'])
+[Gloo] Rank 1 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 3 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 0 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 2 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[32mINFO[0m [90m10-05 02:14:34[0m [90m[diffusion_worker.py:315][0m Worker 1: Initialized device and distributed environment.
+[32mINFO[0m [90m10-05 02:14:34[0m [90m[diffusion_worker.py:315][0m Worker 2: Initialized device and distributed environment.
+[32mINFO[0m [90m10-05 02:14:34[0m [90m[diffusion_worker.py:315][0m Worker 0: Initialized device and distributed environment.
+[32mINFO[0m [90m10-05 02:14:34[0m [90m[diffusion_worker.py:315][0m Worker 3: Initialized device and distributed environment.
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[32mINFO[0m [90m10-05 02:14:34[0m [90m[parallel_state.py:634][0m Building SP subgroups from explicit sp_group_ranks (sp_size=1, ulysses=1, ring=1, use_ulysses_low=True).
+[32mINFO[0m [90m10-05 02:14:34[0m [90m[parallel_state.py:634][0m Building SP subgroups from explicit sp_group_ranks (sp_size=1, ulysses=1, ring=1, use_ulysses_low=True).
+[32mINFO[0m [90m10-05 02:14:34[0m [90m[parallel_state.py:676][0m SP group details for rank 1: sp_group=[1], ulysses_group=[1], ring_group=[1]
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[32mINFO[0m [90m10-05 02:14:34[0m [90m[parallel_state.py:676][0m SP group details for rank 2: sp_group=[2], ulysses_group=[2], ring_group=[2]
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[32mINFO[0m [90m10-05 02:14:34[0m [90m[parallel_state.py:634][0m Building SP subgroups from explicit sp_group_ranks (sp_size=1, ulysses=1, ring=1, use_ulysses_low=True).
+[32mINFO[0m [90m10-05 02:14:34[0m [90m[parallel_state.py:634][0m Building SP subgroups from explicit sp_group_ranks (sp_size=1, ulysses=1, ring=1, use_ulysses_low=True).
+[32mINFO[0m [90m10-05 02:14:34[0m [90m[parallel_state.py:676][0m SP group details for rank 0: sp_group=[0], ulysses_group=[0], ring_group=[0]
+[32mINFO[0m [90m10-05 02:14:34[0m [90m[parallel_state.py:676][0m SP group details for rank 3: sp_group=[3], ulysses_group=[3], ring_group=[3]
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 1 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 2 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 0 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 3 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[33mWARNING[0m [90m10-05 02:14:34[0m [90m[ring_globals.py:73][0m FlashInfer is unavailable; falling back to other attention backends. Reason: No module named 'flashinfer'
+[33mWARNING[0m [90m10-05 02:14:34[0m [90m[ring_globals.py:73][0m FlashInfer is unavailable; falling back to other attention backends. Reason: No module named 'flashinfer'
+[33mWARNING[0m [90m10-05 02:14:34[0m [90m[ring_globals.py:73][0m FlashInfer is unavailable; falling back to other attention backends. Reason: No module named 'flashinfer'
+[32mINFO[0m [90m10-05 02:14:34[0m [90m[selector.py:89][0m Resolved diffusion attention backend 'SDPA' for role='self' via attention_config.default
+[32mINFO[0m [90m10-05 02:14:34[0m [90m[selector.py:89][0m Resolved diffusion attention backend 'SDPA' for role='self' via attention_config.default
+[32mINFO[0m [90m10-05 02:14:34[0m [90m[selector.py:89][0m Resolved diffusion attention backend 'SDPA' for role='self' via attention_config.default
+H3_QUERY_CHUNK_SDPA installed chunk=128 full-key softmax
+H3_QUERY_CHUNK_SDPA installed chunk=128 full-key softmax
+H3_QUERY_CHUNK_SDPA installed chunk=128 full-key softmax
+[33mWARNING[0m [90m10-05 02:14:34[0m [90m[ring_globals.py:73][0m FlashInfer is unavailable; falling back to other attention backends. Reason: No module named 'flashinfer'
+[32mINFO[0m [90m10-05 02:14:34[0m [90m[selector.py:89][0m Resolved diffusion attention backend 'SDPA' for role='self' via attention_config.default
+H3_QUERY_CHUNK_SDPA installed chunk=128 full-key softmax
+H3_LOAD_PROGRESS 0 50
+H3_LOAD_PROGRESS 2 50
+H3_LOAD_PROGRESS 3 50
+H3_LOAD_PROGRESS 1 50
+H3_LOAD_PROGRESS 0 100
+H3_LOAD_PROGRESS 2 100
+H3_LOAD_PROGRESS 1 100
+H3_LOAD_PROGRESS 3 100
+H3_LOAD_PROGRESS 1 150
+H3_LOAD_PROGRESS 2 150
+H3_LOAD_PROGRESS 0 150
+H3_LOAD_PROGRESS 3 150
+H3_LOAD_PROGRESS 1 200
+H3_LOAD_PROGRESS 2 200
+H3_LOAD_PROGRESS 3 200
+H3_LOAD_PROGRESS 0 200
+H3_LOAD_PROGRESS 1 250
+H3_LOAD_PROGRESS 0 250
+H3_LOAD_PROGRESS 3 250
+H3_LOAD_PROGRESS 2 250
+H3_LOAD_PROGRESS 0 300
+H3_LOAD_PROGRESS 1 300
+H3_LOAD_PROGRESS 3 300
+H3_LOAD_PROGRESS 2 300
+H3_LOAD_PROGRESS 1 350
+H3_LOAD_PROGRESS 3 350
+H3_LOAD_PROGRESS 2 350
+H3_LOAD_PROGRESS 0 350
+H3_LOAD_PROGRESS 0 400
+H3_LOAD_PROGRESS 1 400
+H3_LOAD_PROGRESS 3 400
+H3_LOAD_PROGRESS 2 400
+H3_LOAD_PROGRESS 2 450
+H3_LOAD_PROGRESS 1 450
+H3_LOAD_PROGRESS 0 450
+H3_LOAD_PROGRESS 3 450
+H3_LOAD_PROGRESS 3 500
+H3_LOAD_PROGRESS 2 500
+H3_LOAD_PROGRESS 1 500
+H3_LOAD_PROGRESS 0 500
+H3_LOAD_COVERAGE 535 parameters/buffers; ignored input scales only; fp8-storage layers by GEMM dtype {'torch.float16': 165, 'torch.bfloat16': 47}
+H3_LOAD_COVERAGE 535 parameters/buffers; ignored input scales only; fp8-storage layers by GEMM dtype {'torch.float16': 165, 'torch.bfloat16': 47}
+H3_LOAD_COVERAGE 535 parameters/buffers; ignored input scales only; fp8-storage layers by GEMM dtype {'torch.float16': 165, 'torch.bfloat16': 47}
+H3_LOAD_COVERAGE 535 parameters/buffers; ignored input scales only; fp8-storage layers by GEMM dtype {'torch.float16': 165, 'torch.bfloat16': 47}
+H3_FP16_MIXED installed: norms_fp32=210 attn_scale=16.0 gate=16.0 fc2=8.0 debug=False
+H3_FP16_MIXED installed: norms_fp32=210 attn_scale=16.0 gate=16.0 fc2=8.0 debug=False
+H3_FP16_MIXED installed: norms_fp32=210 attn_scale=16.0 gate=16.0 fc2=8.0 debug=False
+H3_FP16_MIXED installed: norms_fp32=210 attn_scale=16.0 gate=16.0 fc2=8.0 debug=False
+[32mINFO[0m [90m10-05 02:15:19[0m [90m[diffusers_loader.py:506][0m Loading weights took 103389.44 seconds
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_model_runner.py:242][0m Model loading took 8.9674 GiB and 45.954032 seconds
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_model_runner.py:242][0m Model loading took 8.9674 GiB and 45.953143 seconds
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_model_runner.py:247][0m Model runner: Model loaded successfully.
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_model_runner.py:247][0m Model runner: Model loaded successfully.
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_model_runner.py:242][0m Model loading took 8.9674 GiB and 45.961714 seconds
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_model_runner.py:247][0m Model runner: Model loaded successfully.
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_model_runner.py:242][0m Model loading took 8.9674 GiB and 45.966122 seconds
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_model_runner.py:247][0m Model runner: Model loaded successfully.
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[compile.py:76][0m Regional compilation applied to 52 module(s) for repeated blocks ['MiniMaxH3DiTBlock'].
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_model_runner.py:177][0m Model runner: transformer configured for lazy regional torch.compile with dynamic=True; compilation errors may surface on the first request.
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[compile.py:76][0m Regional compilation applied to 52 module(s) for repeated blocks ['MiniMaxH3DiTBlock'].
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_model_runner.py:321][0m Model runner: Initialization complete.
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_model_runner.py:177][0m Model runner: transformer configured for lazy regional torch.compile with dynamic=True; compilation errors may surface on the first request.
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_model_runner.py:321][0m Model runner: Initialization complete.
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[compile.py:76][0m Regional compilation applied to 52 module(s) for repeated blocks ['MiniMaxH3DiTBlock'].
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_model_runner.py:177][0m Model runner: transformer configured for lazy regional torch.compile with dynamic=True; compilation errors may surface on the first request.
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_model_runner.py:321][0m Model runner: Initialization complete.
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[compile.py:76][0m Regional compilation applied to 52 module(s) for repeated blocks ['MiniMaxH3DiTBlock'].
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_model_runner.py:177][0m Model runner: transformer configured for lazy regional torch.compile with dynamic=True; compilation errors may surface on the first request.
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_model_runner.py:321][0m Model runner: Initialization complete.
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_worker.py:374][0m Worker 0: Process-scoped GPU memory after model loading: 9.62 GiB.
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[manager.py:96][0m Initializing DiffusionLoRAManager: device=cuda:0, dtype=torch.bfloat16, max_cached_adapters=1, static_lora_path=None
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_worker.py:258][0m Worker 0: Initialization complete.
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_worker.py:1185][0m Worker 0: Scheduler loop started.
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_worker.py:1031][0m Worker 0 ready to receive requests via shared memory
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_worker.py:374][0m Worker 2: Process-scoped GPU memory after model loading: 9.62 GiB.
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[manager.py:96][0m Initializing DiffusionLoRAManager: device=cuda:2, dtype=torch.bfloat16, max_cached_adapters=1, static_lora_path=None
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_worker.py:258][0m Worker 2: Initialization complete.
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_worker.py:374][0m Worker 3: Process-scoped GPU memory after model loading: 9.62 GiB.
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_worker.py:374][0m Worker 1: Process-scoped GPU memory after model loading: 9.62 GiB.
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_worker.py:1185][0m Worker 2: Scheduler loop started.
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_worker.py:1031][0m Worker 2 ready to receive requests via shared memory
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[manager.py:96][0m Initializing DiffusionLoRAManager: device=cuda:3, dtype=torch.bfloat16, max_cached_adapters=1, static_lora_path=None
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_worker.py:258][0m Worker 3: Initialization complete.
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[manager.py:96][0m Initializing DiffusionLoRAManager: device=cuda:1, dtype=torch.bfloat16, max_cached_adapters=1, static_lora_path=None
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_worker.py:258][0m Worker 1: Initialization complete.
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_worker.py:1185][0m Worker 3: Scheduler loop started.
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_worker.py:1031][0m Worker 3 ready to receive requests via shared memory
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_worker.py:1185][0m Worker 1: Scheduler loop started.
+[32mINFO[0m [90m10-05 02:15:20[0m [90m[diffusion_worker.py:1031][0m Worker 1 ready to receive requests via shared memory
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:15:20 [multiproc_executor.py:689] Async result pump started
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:15:20 [diffusion_engine.py:279] [RequestBatch] engine init max_num_seqs=1 max_wait_ms=0.0
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:15:20 [diffusion_engine.py:865] Skipping dummy warmup run (num_frames=0)
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:15:20 [inline_stage_diffusion_client.py:72] [InlineStageDiffusionClient] stage-0 [rep-0] initialized inline (batch_size=1)
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:15:20 [stage_runtime.py:662] [StageRuntime] Stage 0 replica 0 initialized (diffusion, batch_size=1)
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:15:20 [orchestrator.py:507] [Orchestrator] Starting event loop
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:15:20 [async_omni_engine.py:306] [AsyncOmniEngine] Orchestrator ready with 1 stages
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:15:20 [omni_base.py:190] [AsyncOmni] AsyncOmniEngine initialized in 67.16 seconds
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:15:20 [omni_base.py:210] [AsyncOmni] Initialized with 1 stages for model /srv/models/MiniMax-H3-FP8/Ref2VA
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:15:21 [api_server.py:734] Detected pure diffusion mode (single diffusion stage)
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:15:21 [speaker_cache.py:242] Speaker cache ready (max_bytes=536870912)
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:15:21 [serving_speech.py:350] Speaker storage: dir=/home/ac922/.cache/vllm-omni/speakers, max_speakers=1000, restored=0
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:15:21 [serving.py:91] Robot OpenPI serving disabled for model /srv/models/MiniMax-H3-FP8/Ref2VA
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:15:21 [api_server.py:807] Pure diffusion API server initialized for model: /srv/models/MiniMax-H3-FP8/Ref2VA
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:15:21 [api_server.py:534] Starting vLLM API server (pure diffusion mode) on http://0.0.0.0:8000
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:15:21 [launcher.py:37] Available routes are:
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:15:21 [launcher.py:46] Route: /openapi.json, Methods: HEAD, GET
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:15:21 [launcher.py:46] Route: /docs, Methods: HEAD, GET
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:15:21 [launcher.py:46] Route: /docs/oauth2-redirect, Methods: HEAD, GET
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:15:21 [launcher.py:46] Route: /redoc, Methods: HEAD, GET
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:15:21 [launcher.py:46] Route: /metrics, Methods: GET
+[0;36m(APIServer pid=282842)[0;0m INFO 10-05 02:15:21 [launcher.py:46] Route: /v1/chat/completions/batch, Methods: POST
+[0;36m(APIServer pid=282842)[0;0m INFO:     Started server process [282842]
+[0;36m(APIServer pid=282842)[0;0m INFO:     Waiting for application startup.
+[0;36m(APIServer pid=282842)[0;0m INFO:     Application startup complete.

@@ -1,0 +1,2158 @@
+{
+  "algorithm": "custom_bf16_vs_dynamic_fp8_relative_mse",
+  "candidate": "FP8_PER_CHANNEL_PER_TOKEN_CFG",
+  "target_effective_bits": 9.0,
+  "achieved_effective_bits": 8.994408602150537,
+  "groups": [
+    {
+      "group": "linear::layers.49.self_attn.o_proj",
+      "members": [
+        "layers.49.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0016449053326118668,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.48.self_attn.o_proj",
+      "members": [
+        "layers.48.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.001547668504183181,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.42.self_attn.o_proj",
+      "members": [
+        "layers.42.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0015364473630977325,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.44.self_attn.o_proj",
+      "members": [
+        "layers.44.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0015329158825943072,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.46.self_attn.o_proj",
+      "members": [
+        "layers.46.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0015012638971313881,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.47.self_attn.o_proj",
+      "members": [
+        "layers.47.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.001433183881512109,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.30.self_attn.o_proj",
+      "members": [
+        "layers.30.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0013202235417317106,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.24.self_attn.o_proj",
+      "members": [
+        "layers.24.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0012078589758006094,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.43.self_attn.o_proj",
+      "members": [
+        "layers.43.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.001200786353351619,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.38.self_attn.o_proj",
+      "members": [
+        "layers.38.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0011754243110082745,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.45.self_attn.o_proj",
+      "members": [
+        "layers.45.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0011724025691648575,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.35.self_attn.o_proj",
+      "members": [
+        "layers.35.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0011531957138299622,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.34.mlp.down_proj",
+      "members": [
+        "layers.34.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.001142452760433026,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.26.mlp.down_proj",
+      "members": [
+        "layers.26.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.001137696606776505,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.48.mlp.down_proj",
+      "members": [
+        "layers.48.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0011375892444359592,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.22.mlp.down_proj",
+      "members": [
+        "layers.22.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.001116271875272335,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.29.mlp.down_proj",
+      "members": [
+        "layers.29.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0011082651021308112,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.28.mlp.down_proj",
+      "members": [
+        "layers.28.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.001107530456068621,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.31.self_attn.o_proj",
+      "members": [
+        "layers.31.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.001100251047259622,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.30.mlp.down_proj",
+      "members": [
+        "layers.30.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0010927455385783891,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.23.mlp.down_proj",
+      "members": [
+        "layers.23.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0010903730608376452,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.24.mlp.down_proj",
+      "members": [
+        "layers.24.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0010838112968230237,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.27.mlp.down_proj",
+      "members": [
+        "layers.27.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0010828564706675428,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.49.mlp.down_proj",
+      "members": [
+        "layers.49.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.001075693959444526,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.36.mlp.down_proj",
+      "members": [
+        "layers.36.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.001075439905164125,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.25.self_attn.o_proj",
+      "members": [
+        "layers.25.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0010637774529391538,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.17.mlp.down_proj",
+      "members": [
+        "layers.17.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0010615758749939542,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.18.mlp.down_proj",
+      "members": [
+        "layers.18.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0010571927790202996,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.21.mlp.down_proj",
+      "members": [
+        "layers.21.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.001054107668706625,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.37.self_attn.o_proj",
+      "members": [
+        "layers.37.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.001051651921623584,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.19.mlp.down_proj",
+      "members": [
+        "layers.19.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0010503184028525818,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.46.mlp.down_proj",
+      "members": [
+        "layers.46.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0010493611038174448,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.25.mlp.down_proj",
+      "members": [
+        "layers.25.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0010482951203970275,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.40.self_attn.o_proj",
+      "members": [
+        "layers.40.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0010479404648560463,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::layers.35.mlp.down_proj",
+      "members": [
+        "layers.35.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0010477857614930742,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.28.self_attn.o_proj",
+      "members": [
+        "layers.28.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0010362998331572987,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.12.mlp.down_proj",
+      "members": [
+        "layers.12.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0010338241375318575,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.20.mlp.down_proj",
+      "members": [
+        "layers.20.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0010211989274512005,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.41.mlp.down_proj",
+      "members": [
+        "layers.41.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.001016771401027511,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.42.mlp.down_proj",
+      "members": [
+        "layers.42.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0010136776421148061,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.10.mlp.down_proj",
+      "members": [
+        "layers.10.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0010135619873947585,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.15.mlp.down_proj",
+      "members": [
+        "layers.15.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0010091030245574072,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.27.self_attn.o_proj",
+      "members": [
+        "layers.27.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0010059807953418304,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.39.mlp.down_proj",
+      "members": [
+        "layers.39.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0009966944405146792,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.32.mlp.down_proj",
+      "members": [
+        "layers.32.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0009933645384711109,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.14.mlp.down_proj",
+      "members": [
+        "layers.14.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.000985945264107411,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.11.mlp.down_proj",
+      "members": [
+        "layers.11.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0009805422781302418,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.39.self_attn.o_proj",
+      "members": [
+        "layers.39.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0009792871861092308,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.16.mlp.down_proj",
+      "members": [
+        "layers.16.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.000975774957555278,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.13.mlp.down_proj",
+      "members": [
+        "layers.13.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0009647846049504701,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.38.mlp.down_proj",
+      "members": [
+        "layers.38.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0009631741276790491,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.37.mlp.down_proj",
+      "members": [
+        "layers.37.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0009573445004374603,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.29.self_attn.o_proj",
+      "members": [
+        "layers.29.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0009570369106127228,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.36.self_attn.o_proj",
+      "members": [
+        "layers.36.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0009539916903886286,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.47.mlp.down_proj",
+      "members": [
+        "layers.47.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0009331376304085149,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.34.self_attn.o_proj",
+      "members": [
+        "layers.34.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0009292229298699295,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.23.self_attn.o_proj",
+      "members": [
+        "layers.23.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0009213870051549381,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.8.mlp.down_proj",
+      "members": [
+        "layers.8.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0009183763761153994,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.33.mlp.down_proj",
+      "members": [
+        "layers.33.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0009016936045446402,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.22.mlp",
+      "members": [
+        "layers.22.mlp.gate_proj",
+        "layers.22.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0009004733240410185,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.11.mlp",
+      "members": [
+        "layers.11.mlp.gate_proj",
+        "layers.11.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0008918872858572635,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.22.self_attn.o_proj",
+      "members": [
+        "layers.22.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0008914683829095766,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.23.mlp",
+      "members": [
+        "layers.23.mlp.gate_proj",
+        "layers.23.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0008872367525308919,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.10.mlp",
+      "members": [
+        "layers.10.mlp.gate_proj",
+        "layers.10.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0008841689692781382,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.19.mlp",
+      "members": [
+        "layers.19.mlp.gate_proj",
+        "layers.19.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0008841446595500646,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.24.mlp",
+      "members": [
+        "layers.24.mlp.gate_proj",
+        "layers.24.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0008818184128473992,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.19.self_attn.o_proj",
+      "members": [
+        "layers.19.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0008812930762931798,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.20.mlp",
+      "members": [
+        "layers.20.mlp.gate_proj",
+        "layers.20.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0008789220954463331,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.21.self_attn.o_proj",
+      "members": [
+        "layers.21.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0008765070998811592,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.21.mlp",
+      "members": [
+        "layers.21.mlp.gate_proj",
+        "layers.21.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0008764308989082911,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.34.mlp",
+      "members": [
+        "layers.34.mlp.gate_proj",
+        "layers.34.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0008744895908167009,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.40.mlp.down_proj",
+      "members": [
+        "layers.40.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0008726309893222314,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.41.self_attn.o_proj",
+      "members": [
+        "layers.41.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.000871034573311477,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.5.mlp.down_proj",
+      "members": [
+        "layers.5.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0008592773304606881,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.11.self_attn.o_proj",
+      "members": [
+        "layers.11.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0008573134497294034,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.12.mlp",
+      "members": [
+        "layers.12.mlp.gate_proj",
+        "layers.12.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.000856541616772102,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.15.mlp",
+      "members": [
+        "layers.15.mlp.gate_proj",
+        "layers.15.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0008562982364602284,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.33.self_attn.o_proj",
+      "members": [
+        "layers.33.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0008531324418050298,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.17.mlp",
+      "members": [
+        "layers.17.mlp.gate_proj",
+        "layers.17.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0008457170623090307,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.25.mlp",
+      "members": [
+        "layers.25.mlp.gate_proj",
+        "layers.25.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0008447256116781662,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.26.self_attn.o_proj",
+      "members": [
+        "layers.26.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0008400224775269213,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.26.mlp",
+      "members": [
+        "layers.26.mlp.gate_proj",
+        "layers.26.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0008368774077547313,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.44.mlp.down_proj",
+      "members": [
+        "layers.44.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0008368199234751477,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.14.self_attn.o_proj",
+      "members": [
+        "layers.14.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0008276378265995343,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.32.self_attn.o_proj",
+      "members": [
+        "layers.32.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0008198584095219974,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.18.mlp",
+      "members": [
+        "layers.18.mlp.gate_proj",
+        "layers.18.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0008194438554151081,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.31.mlp.down_proj",
+      "members": [
+        "layers.31.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0008115857426304328,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.20.self_attn.o_proj",
+      "members": [
+        "layers.20.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0008086569052055835,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.35.mlp",
+      "members": [
+        "layers.35.mlp.gate_proj",
+        "layers.35.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.000804765018154372,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.27.mlp",
+      "members": [
+        "layers.27.mlp.gate_proj",
+        "layers.27.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0008012509107277654,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.14.mlp",
+      "members": [
+        "layers.14.mlp.gate_proj",
+        "layers.14.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0007964024285771108,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.9.mlp",
+      "members": [
+        "layers.9.mlp.gate_proj",
+        "layers.9.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0007889474795433525,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.16.mlp",
+      "members": [
+        "layers.16.mlp.gate_proj",
+        "layers.16.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0007863127552736411,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.45.mlp.down_proj",
+      "members": [
+        "layers.45.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0007846631109890422,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.28.mlp",
+      "members": [
+        "layers.28.mlp.gate_proj",
+        "layers.28.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.000782732492892985,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.47.mlp",
+      "members": [
+        "layers.47.mlp.gate_proj",
+        "layers.47.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0007797672501107693,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.46.mlp",
+      "members": [
+        "layers.46.mlp.gate_proj",
+        "layers.46.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0007710270188577145,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.13.self_attn.o_proj",
+      "members": [
+        "layers.13.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0007634876282443215,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.48.mlp",
+      "members": [
+        "layers.48.mlp.gate_proj",
+        "layers.48.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0007614215226547607,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.13.mlp",
+      "members": [
+        "layers.13.mlp.gate_proj",
+        "layers.13.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0007586616796440397,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.49.mlp",
+      "members": [
+        "layers.49.mlp.gate_proj",
+        "layers.49.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.000758198311969378,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.43.mlp",
+      "members": [
+        "layers.43.mlp.gate_proj",
+        "layers.43.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0007465519862329725,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.18.self_attn.o_proj",
+      "members": [
+        "layers.18.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0007364132256481165,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.44.mlp",
+      "members": [
+        "layers.44.mlp.gate_proj",
+        "layers.44.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0007326954109689831,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.45.mlp",
+      "members": [
+        "layers.45.mlp.gate_proj",
+        "layers.45.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0007261024749772596,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.12.self_attn.o_proj",
+      "members": [
+        "layers.12.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0007125850763160375,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.36.mlp",
+      "members": [
+        "layers.36.mlp.gate_proj",
+        "layers.36.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0007104821534947135,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.42.mlp",
+      "members": [
+        "layers.42.mlp.gate_proj",
+        "layers.42.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.000701052802185235,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.33.mlp",
+      "members": [
+        "layers.33.mlp.gate_proj",
+        "layers.33.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0006984599426641498,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.41.mlp",
+      "members": [
+        "layers.41.mlp.gate_proj",
+        "layers.41.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.000697177730490719,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.3.mlp.down_proj",
+      "members": [
+        "layers.3.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0006893470420323501,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.7.self_attn.o_proj",
+      "members": [
+        "layers.7.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0006872426298753021,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.40.mlp",
+      "members": [
+        "layers.40.mlp.gate_proj",
+        "layers.40.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0006720004899719417,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.39.mlp",
+      "members": [
+        "layers.39.mlp.gate_proj",
+        "layers.39.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0006715806859787991,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.29.mlp",
+      "members": [
+        "layers.29.mlp.gate_proj",
+        "layers.29.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.000658441999746265,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.15.self_attn.o_proj",
+      "members": [
+        "layers.15.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0006469047188960217,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.9.self_attn.o_proj",
+      "members": [
+        "layers.9.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0006447572396692732,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.10.self_attn.o_proj",
+      "members": [
+        "layers.10.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0006358877470629349,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.8.self_attn.o_proj",
+      "members": [
+        "layers.8.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0006069202529667813,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.16.self_attn.o_proj",
+      "members": [
+        "layers.16.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0006058075955291401,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.38.mlp",
+      "members": [
+        "layers.38.mlp.gate_proj",
+        "layers.38.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0005954798116376549,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.3.self_attn.o_proj",
+      "members": [
+        "layers.3.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0005882689096100073,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.9.mlp.down_proj",
+      "members": [
+        "layers.9.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0005789923247235119,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.37.mlp",
+      "members": [
+        "layers.37.mlp.gate_proj",
+        "layers.37.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0005466728668064917,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.17.self_attn.o_proj",
+      "members": [
+        "layers.17.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.000527223825771326,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.2.mlp.down_proj",
+      "members": [
+        "layers.2.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0005139021995101806,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.4.self_attn.o_proj",
+      "members": [
+        "layers.4.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0004955638721300811,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.4.mlp.down_proj",
+      "members": [
+        "layers.4.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.0004800037212562755,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.2.self_attn.o_proj",
+      "members": [
+        "layers.2.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0004647992739660263,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.5.self_attn.o_proj",
+      "members": [
+        "layers.5.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.00041035542115617585,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.6.self_attn.o_proj",
+      "members": [
+        "layers.6.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0004040372681756339,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.1.mlp.down_proj",
+      "members": [
+        "layers.1.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.00040158359524615207,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.19.self_attn.main",
+      "members": [
+        "layers.19.self_attn.k_proj",
+        "layers.19.self_attn.q_proj",
+        "layers.19.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.00039369169023214753,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.0.mlp",
+      "members": [
+        "layers.0.mlp.gate_proj",
+        "layers.0.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0003893350167008397,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.20.self_attn.main",
+      "members": [
+        "layers.20.self_attn.k_proj",
+        "layers.20.self_attn.q_proj",
+        "layers.20.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.00035756911884007034,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.18.self_attn.main",
+      "members": [
+        "layers.18.self_attn.k_proj",
+        "layers.18.self_attn.q_proj",
+        "layers.18.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.00035538872981997495,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.25.self_attn.main",
+      "members": [
+        "layers.25.self_attn.k_proj",
+        "layers.25.self_attn.q_proj",
+        "layers.25.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0003502794627362724,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.23.self_attn.main",
+      "members": [
+        "layers.23.self_attn.k_proj",
+        "layers.23.self_attn.q_proj",
+        "layers.23.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0003369211208493318,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.12.self_attn.main",
+      "members": [
+        "layers.12.self_attn.k_proj",
+        "layers.12.self_attn.q_proj",
+        "layers.12.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0003368198495095179,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.47.self_attn.main",
+      "members": [
+        "layers.47.self_attn.k_proj",
+        "layers.47.self_attn.q_proj",
+        "layers.47.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0003304155883932828,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.17.self_attn.main",
+      "members": [
+        "layers.17.self_attn.k_proj",
+        "layers.17.self_attn.q_proj",
+        "layers.17.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.00032670268050219166,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.22.self_attn.main",
+      "members": [
+        "layers.22.self_attn.k_proj",
+        "layers.22.self_attn.q_proj",
+        "layers.22.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.00032299254134661627,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.32.self_attn.main",
+      "members": [
+        "layers.32.self_attn.k_proj",
+        "layers.32.self_attn.q_proj",
+        "layers.32.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0003207959214506263,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.9.self_attn.main",
+      "members": [
+        "layers.9.self_attn.k_proj",
+        "layers.9.self_attn.q_proj",
+        "layers.9.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0003197798556462152,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.21.self_attn.main",
+      "members": [
+        "layers.21.self_attn.k_proj",
+        "layers.21.self_attn.q_proj",
+        "layers.21.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0003169524757151844,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.29.self_attn.main",
+      "members": [
+        "layers.29.self_attn.k_proj",
+        "layers.29.self_attn.q_proj",
+        "layers.29.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0003151848694663967,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.10.self_attn.main",
+      "members": [
+        "layers.10.self_attn.k_proj",
+        "layers.10.self_attn.q_proj",
+        "layers.10.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0003146310562468865,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.31.self_attn.main",
+      "members": [
+        "layers.31.self_attn.k_proj",
+        "layers.31.self_attn.q_proj",
+        "layers.31.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0003134114650614485,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.13.self_attn.main",
+      "members": [
+        "layers.13.self_attn.k_proj",
+        "layers.13.self_attn.q_proj",
+        "layers.13.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0003126033762219045,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.11.self_attn.main",
+      "members": [
+        "layers.11.self_attn.k_proj",
+        "layers.11.self_attn.q_proj",
+        "layers.11.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0003107748270228293,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.49.self_attn.main",
+      "members": [
+        "layers.49.self_attn.k_proj",
+        "layers.49.self_attn.q_proj",
+        "layers.49.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0003081961344140717,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.15.self_attn.main",
+      "members": [
+        "layers.15.self_attn.k_proj",
+        "layers.15.self_attn.q_proj",
+        "layers.15.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0003076858304540309,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.1.self_attn.o_proj",
+      "members": [
+        "layers.1.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.00030515509727683756,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.14.self_attn.main",
+      "members": [
+        "layers.14.self_attn.k_proj",
+        "layers.14.self_attn.q_proj",
+        "layers.14.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.00030247453008223896,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.34.self_attn.main",
+      "members": [
+        "layers.34.self_attn.k_proj",
+        "layers.34.self_attn.q_proj",
+        "layers.34.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0002990808293537628,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.30.self_attn.main",
+      "members": [
+        "layers.30.self_attn.k_proj",
+        "layers.30.self_attn.q_proj",
+        "layers.30.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.00029579620807210476,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.30.mlp",
+      "members": [
+        "layers.30.mlp.gate_proj",
+        "layers.30.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.00029336526923478087,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.33.self_attn.main",
+      "members": [
+        "layers.33.self_attn.k_proj",
+        "layers.33.self_attn.q_proj",
+        "layers.33.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0002917757210709481,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.24.self_attn.main",
+      "members": [
+        "layers.24.self_attn.k_proj",
+        "layers.24.self_attn.q_proj",
+        "layers.24.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0002891928540072273,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.16.self_attn.main",
+      "members": [
+        "layers.16.self_attn.k_proj",
+        "layers.16.self_attn.q_proj",
+        "layers.16.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.00028836802669053075,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.26.self_attn.main",
+      "members": [
+        "layers.26.self_attn.k_proj",
+        "layers.26.self_attn.q_proj",
+        "layers.26.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0002882303919221745,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.27.self_attn.main",
+      "members": [
+        "layers.27.self_attn.k_proj",
+        "layers.27.self_attn.q_proj",
+        "layers.27.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.00028752802051881815,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.44.self_attn.main",
+      "members": [
+        "layers.44.self_attn.k_proj",
+        "layers.44.self_attn.q_proj",
+        "layers.44.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.00027987758377507265,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.35.self_attn.main",
+      "members": [
+        "layers.35.self_attn.k_proj",
+        "layers.35.self_attn.q_proj",
+        "layers.35.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0002798056919534806,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.45.self_attn.main",
+      "members": [
+        "layers.45.self_attn.k_proj",
+        "layers.45.self_attn.q_proj",
+        "layers.45.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0002795507868550761,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.46.self_attn.main",
+      "members": [
+        "layers.46.self_attn.k_proj",
+        "layers.46.self_attn.q_proj",
+        "layers.46.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0002790192945110452,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.32.mlp",
+      "members": [
+        "layers.32.mlp.gate_proj",
+        "layers.32.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0002783886196504451,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.8.self_attn.main",
+      "members": [
+        "layers.8.self_attn.k_proj",
+        "layers.8.self_attn.q_proj",
+        "layers.8.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0002762054071432169,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.0.self_attn.o_proj",
+      "members": [
+        "layers.0.self_attn.o_proj"
+      ],
+      "parameters": 41943040,
+      "relative_mse": 0.0002745048889001056,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.43.self_attn.main",
+      "members": [
+        "layers.43.self_attn.k_proj",
+        "layers.43.self_attn.q_proj",
+        "layers.43.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0002711100120041358,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.28.self_attn.main",
+      "members": [
+        "layers.28.self_attn.k_proj",
+        "layers.28.self_attn.q_proj",
+        "layers.28.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0002706422696729295,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.7.self_attn.main",
+      "members": [
+        "layers.7.self_attn.k_proj",
+        "layers.7.self_attn.q_proj",
+        "layers.7.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.00026701726062466186,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.42.self_attn.main",
+      "members": [
+        "layers.42.self_attn.k_proj",
+        "layers.42.self_attn.q_proj",
+        "layers.42.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.00026618238283311266,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.0.mlp.down_proj",
+      "members": [
+        "layers.0.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.00026311469430540565,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.8.mlp",
+      "members": [
+        "layers.8.mlp.gate_proj",
+        "layers.8.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.00026236881250399417,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.48.self_attn.main",
+      "members": [
+        "layers.48.self_attn.k_proj",
+        "layers.48.self_attn.q_proj",
+        "layers.48.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.00025525969579328023,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.36.self_attn.main",
+      "members": [
+        "layers.36.self_attn.k_proj",
+        "layers.36.self_attn.q_proj",
+        "layers.36.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.00025086254486087324,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.31.mlp",
+      "members": [
+        "layers.31.mlp.gate_proj",
+        "layers.31.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0002488009026892841,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.41.self_attn.main",
+      "members": [
+        "layers.41.self_attn.k_proj",
+        "layers.41.self_attn.q_proj",
+        "layers.41.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0002424460407927522,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.6.self_attn.main",
+      "members": [
+        "layers.6.self_attn.k_proj",
+        "layers.6.self_attn.q_proj",
+        "layers.6.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.00024197491838772025,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.4.self_attn.main",
+      "members": [
+        "layers.4.self_attn.k_proj",
+        "layers.4.self_attn.q_proj",
+        "layers.4.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0002345472433873959,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.38.self_attn.main",
+      "members": [
+        "layers.38.self_attn.k_proj",
+        "layers.38.self_attn.q_proj",
+        "layers.38.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0002246919581644315,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.5.self_attn.main",
+      "members": [
+        "layers.5.self_attn.k_proj",
+        "layers.5.self_attn.q_proj",
+        "layers.5.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.00022162118623005901,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.3.self_attn.main",
+      "members": [
+        "layers.3.self_attn.k_proj",
+        "layers.3.self_attn.q_proj",
+        "layers.3.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.00021927772174202257,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.39.self_attn.main",
+      "members": [
+        "layers.39.self_attn.k_proj",
+        "layers.39.self_attn.q_proj",
+        "layers.39.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.00021868188592860134,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.40.self_attn.main",
+      "members": [
+        "layers.40.self_attn.k_proj",
+        "layers.40.self_attn.q_proj",
+        "layers.40.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0002152295015065065,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.37.self_attn.main",
+      "members": [
+        "layers.37.self_attn.k_proj",
+        "layers.37.self_attn.q_proj",
+        "layers.37.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.00021032348015548427,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.43.mlp.down_proj",
+      "members": [
+        "layers.43.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.00020854428450938368,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.2.self_attn.main",
+      "members": [
+        "layers.2.self_attn.k_proj",
+        "layers.2.self_attn.q_proj",
+        "layers.2.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.00020508946078844607,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.7.mlp.down_proj",
+      "members": [
+        "layers.7.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 0.00019216648578766705,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.1.self_attn.main",
+      "members": [
+        "layers.1.self_attn.k_proj",
+        "layers.1.self_attn.q_proj",
+        "layers.1.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0001828258347528746,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::layers.0.self_attn.main",
+      "members": [
+        "layers.0.self_attn.k_proj",
+        "layers.0.self_attn.q_proj",
+        "layers.0.self_attn.v_proj"
+      ],
+      "parameters": 52428800,
+      "relative_mse": 0.0001480617098853412,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.7.mlp",
+      "members": [
+        "layers.7.mlp.gate_proj",
+        "layers.7.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.0001269788197201252,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.6.mlp",
+      "members": [
+        "layers.6.mlp.gate_proj",
+        "layers.6.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.00011107435967442662,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.5.mlp",
+      "members": [
+        "layers.5.mlp.gate_proj",
+        "layers.5.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 0.00010114598308250148,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.3.mlp",
+      "members": [
+        "layers.3.mlp.gate_proj",
+        "layers.3.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 7.527054696694879e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.2.mlp",
+      "members": [
+        "layers.2.mlp.gate_proj",
+        "layers.2.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 7.38030664984486e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.4.mlp",
+      "members": [
+        "layers.4.mlp.gate_proj",
+        "layers.4.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 6.955453561495939e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "gate_up::layers.1.mlp",
+      "members": [
+        "layers.1.mlp.gate_proj",
+        "layers.1.mlp.up_proj"
+      ],
+      "parameters": 262144000,
+      "relative_mse": 6.855085193762097e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::layers.6.mlp.down_proj",
+      "members": [
+        "layers.6.mlp.down_proj"
+      ],
+      "parameters": 131072000,
+      "relative_mse": 4.425255642319732e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    }
+  ]
+}

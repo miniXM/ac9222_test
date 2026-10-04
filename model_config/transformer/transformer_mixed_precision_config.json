@@ -1,0 +1,3038 @@
+{
+  "algorithm": "global_gradient_output_probe",
+  "candidate": "FP8_PER_CHANNEL_PER_TOKEN_CFG",
+  "target_effective_bits": 9.25,
+  "achieved_effective_bits": 9.248862384939846,
+  "groups": [
+    {
+      "group": "qkv::transformer_blocks.49.attn.main",
+      "members": [
+        "transformer_blocks.49.attn.to_k",
+        "transformer_blocks.49.attn.to_q",
+        "transformer_blocks.49.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.019270923254377393,
+      "local_relative_mse": 0.000411493531831834,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.48.ff.net.2",
+      "members": [
+        "transformer_blocks.48.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 0.004859423180987324,
+      "local_relative_mse": 0.001407027757974432,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.48.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.48.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.004230237582344985,
+      "local_relative_mse": 0.0009697788050347524,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.48.attn.to_out.0",
+      "members": [
+        "transformer_blocks.48.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.0041022525541113825,
+      "local_relative_mse": 0.0013617918340458038,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.49.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.49.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.0037227961446559973,
+      "local_relative_mse": 0.0005139198639293777,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.49.ff.net.2",
+      "members": [
+        "transformer_blocks.49.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 0.0036363296200517302,
+      "local_relative_mse": 0.000492197669521487,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.46.attn.to_out.0",
+      "members": [
+        "transformer_blocks.46.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.003600510813103807,
+      "local_relative_mse": 0.0016688577593512001,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.47.attn.to_out.0",
+      "members": [
+        "transformer_blocks.47.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.0034948093780974815,
+      "local_relative_mse": 0.001495568431586305,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "qkv::transformer_blocks.48.attn.main",
+      "members": [
+        "transformer_blocks.48.attn.to_k",
+        "transformer_blocks.48.attn.to_q",
+        "transformer_blocks.48.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0030430948320021357,
+      "local_relative_mse": 0.0007046472754139436,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "qkv::transformer_blocks.47.attn.main",
+      "members": [
+        "transformer_blocks.47.attn.to_k",
+        "transformer_blocks.47.attn.to_q",
+        "transformer_blocks.47.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0027020649844942584,
+      "local_relative_mse": 0.0006952002162249172,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.0.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.0.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.002589866200499734,
+      "local_relative_mse": 7.16779420891528e-05,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.45.attn.to_out.0",
+      "members": [
+        "transformer_blocks.45.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.002377577746280979,
+      "local_relative_mse": 0.001686686519935508,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.47.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.47.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.002273059920417136,
+      "local_relative_mse": 0.001071573605975648,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.42.attn.to_out.0",
+      "members": [
+        "transformer_blocks.42.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.0021481996093554896,
+      "local_relative_mse": 0.0016779374940116393,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.43.attn.to_out.0",
+      "members": [
+        "transformer_blocks.43.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.0020865447176862096,
+      "local_relative_mse": 0.001595479544261768,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.44.attn.to_out.0",
+      "members": [
+        "transformer_blocks.44.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.0020698906705916825,
+      "local_relative_mse": 0.001608515134017199,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "qkv::transformer_blocks.46.attn.main",
+      "members": [
+        "transformer_blocks.46.attn.to_k",
+        "transformer_blocks.46.attn.to_q",
+        "transformer_blocks.46.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0020040617375542925,
+      "local_relative_mse": 0.0006979923293636768,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "qkv::transformer_blocks.45.attn.main",
+      "members": [
+        "transformer_blocks.45.attn.to_k",
+        "transformer_blocks.45.attn.to_q",
+        "transformer_blocks.45.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0018494804866690843,
+      "local_relative_mse": 0.0006380658000876046,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.47.ff.net.2",
+      "members": [
+        "transformer_blocks.47.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 0.0018103166918971285,
+      "local_relative_mse": 0.0014642927219069468,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.46.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.46.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.0017537495306674865,
+      "local_relative_mse": 0.001186381073999821,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.45.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.45.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.001578941436246369,
+      "local_relative_mse": 0.0011957621716007893,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.49.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.49.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.0015773007137149585,
+      "local_relative_mse": 6.824153764130807e-05,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.46.ff.net.2",
+      "members": [
+        "transformer_blocks.46.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 0.001455486143666452,
+      "local_relative_mse": 0.0014436818873029842,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.41.attn.to_out.0",
+      "members": [
+        "transformer_blocks.41.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.0014302368402264356,
+      "local_relative_mse": 0.0016807630547552123,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.43.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.43.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.0014301109598314657,
+      "local_relative_mse": 0.0011135140673604084,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.42.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.42.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.0013766068676679668,
+      "local_relative_mse": 0.0010555510774364557,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.44.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.44.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.0013365010326349394,
+      "local_relative_mse": 0.0011240665802378,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "qkv::transformer_blocks.44.attn.main",
+      "members": [
+        "transformer_blocks.44.attn.to_k",
+        "transformer_blocks.44.attn.to_q",
+        "transformer_blocks.44.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.001314347270446662,
+      "local_relative_mse": 0.0006949916075092087,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "qkv::transformer_blocks.43.attn.main",
+      "members": [
+        "transformer_blocks.43.attn.to_k",
+        "transformer_blocks.43.attn.to_q",
+        "transformer_blocks.43.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0012577987150390207,
+      "local_relative_mse": 0.0006308707378875514,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.40.attn.to_out.0",
+      "members": [
+        "transformer_blocks.40.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.0012285101616733574,
+      "local_relative_mse": 0.0018121086514991814,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.49.attn.to_out.0",
+      "members": [
+        "transformer_blocks.49.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.001172741833642947,
+      "local_relative_mse": 0.0007812198337414825,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "qkv::transformer_blocks.42.attn.main",
+      "members": [
+        "transformer_blocks.42.attn.to_k",
+        "transformer_blocks.42.attn.to_q",
+        "transformer_blocks.42.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0011468611342812284,
+      "local_relative_mse": 0.0007241296498302712,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.1.ff.net.2",
+      "members": [
+        "transformer_blocks.1.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 0.0010750333924949421,
+      "local_relative_mse": 0.000209489169729171,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.41.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.41.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.0010479681238733396,
+      "local_relative_mse": 0.0011305076772264173,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.45.ff.net.2",
+      "members": [
+        "transformer_blocks.45.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 0.0010466354787566808,
+      "local_relative_mse": 0.0015337242917645231,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "qkv::transformer_blocks.1.attn.main",
+      "members": [
+        "transformer_blocks.1.attn.to_k",
+        "transformer_blocks.1.attn.to_q",
+        "transformer_blocks.1.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0010428528550053423,
+      "local_relative_mse": 0.0003251327149510777,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.1.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.1.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.0010382050920670057,
+      "local_relative_mse": 7.572410232068702e-05,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.5.attn.to_out.0",
+      "members": [
+        "transformer_blocks.5.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.0009919694003147999,
+      "local_relative_mse": 0.0004332233955107317,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.48.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.48.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.0009902824930109958,
+      "local_relative_mse": 6.90555795991865e-05,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.0.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.0.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.0009868751867220134,
+      "local_relative_mse": 0.0009411098627071193,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.42.ff.net.2",
+      "members": [
+        "transformer_blocks.42.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 0.0009841191384782578,
+      "local_relative_mse": 0.0015230517170225005,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.39.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.39.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.0009664944674571271,
+      "local_relative_mse": 0.001118001074053454,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.39.attn.to_out.0",
+      "members": [
+        "transformer_blocks.39.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.0009515450054824214,
+      "local_relative_mse": 0.0017655053126022834,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.44.ff.net.2",
+      "members": [
+        "transformer_blocks.44.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 0.0009467996555630719,
+      "local_relative_mse": 0.0015660407274399825,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "qkv::transformer_blocks.41.attn.main",
+      "members": [
+        "transformer_blocks.41.attn.to_k",
+        "transformer_blocks.41.attn.to_q",
+        "transformer_blocks.41.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0009414678822633407,
+      "local_relative_mse": 0.00068383095067368,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.43.ff.net.2",
+      "members": [
+        "transformer_blocks.43.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 0.0008848073594151565,
+      "local_relative_mse": 0.001418727750991557,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.40.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.40.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.000879237900986343,
+      "local_relative_mse": 0.0011286600792175608,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.41.ff.net.2",
+      "members": [
+        "transformer_blocks.41.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 0.0007208682355386308,
+      "local_relative_mse": 0.0015933857842880363,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::transformer_blocks.38.attn.to_out.0",
+      "members": [
+        "transformer_blocks.38.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.0007120489549620665,
+      "local_relative_mse": 0.0015866829516020173,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.40.attn.main",
+      "members": [
+        "transformer_blocks.40.attn.to_k",
+        "transformer_blocks.40.attn.to_q",
+        "transformer_blocks.40.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0006974855373778294,
+      "local_relative_mse": 0.0006974622300221902,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.37.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.37.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.0006650406323144946,
+      "local_relative_mse": 0.0011177323795111406,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.36.attn.to_out.0",
+      "members": [
+        "transformer_blocks.36.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.0006338630514675792,
+      "local_relative_mse": 0.0016905407709563566,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.39.attn.main",
+      "members": [
+        "transformer_blocks.39.attn.to_k",
+        "transformer_blocks.39.attn.to_q",
+        "transformer_blocks.39.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0006090635857737659,
+      "local_relative_mse": 0.000658124370381645,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.40.ff.net.2",
+      "members": [
+        "transformer_blocks.40.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 0.000586232310875109,
+      "local_relative_mse": 0.0014995528251170625,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.35.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.35.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.0005745550585011022,
+      "local_relative_mse": 0.001091152937204482,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.38.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.38.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.0005666162339443827,
+      "local_relative_mse": 0.0010891085243697435,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.36.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.36.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.0005592371412951323,
+      "local_relative_mse": 0.0011013982442943156,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.36.attn.main",
+      "members": [
+        "transformer_blocks.36.attn.to_k",
+        "transformer_blocks.36.attn.to_q",
+        "transformer_blocks.36.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0005552444382383142,
+      "local_relative_mse": 0.0005481497017660578,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.47.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.47.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.0005514816281695758,
+      "local_relative_mse": 7.012687698292963e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.38.attn.main",
+      "members": [
+        "transformer_blocks.38.attn.to_k",
+        "transformer_blocks.38.attn.to_q",
+        "transformer_blocks.38.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0005424113646538437,
+      "local_relative_mse": 0.0005891063639496967,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.42.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.42.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.0005347734106334366,
+      "local_relative_mse": 6.877284864679167e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.37.attn.to_out.0",
+      "members": [
+        "transformer_blocks.37.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.0005318348810304664,
+      "local_relative_mse": 0.001737560882597132,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.1.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.1.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.000525649247648772,
+      "local_relative_mse": 0.00042527195916453454,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.35.attn.to_out.0",
+      "members": [
+        "transformer_blocks.35.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.0005191873468512204,
+      "local_relative_mse": 0.0018404176241218237,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.5.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.5.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.0005159438460517336,
+      "local_relative_mse": 9.449843168546578e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.39.ff.net.2",
+      "members": [
+        "transformer_blocks.39.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 0.0004971026583662042,
+      "local_relative_mse": 0.0013675726684280003,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.39.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.39.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.0004805962327885752,
+      "local_relative_mse": 7.417330855670431e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.19.attn.main",
+      "members": [
+        "transformer_blocks.19.attn.to_k",
+        "transformer_blocks.19.attn.to_q",
+        "transformer_blocks.19.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0004786696286991611,
+      "local_relative_mse": 0.0007916852594650811,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.46.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.46.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.00047234370157034865,
+      "local_relative_mse": 6.964784554498156e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.41.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.41.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.0004705436545582081,
+      "local_relative_mse": 7.135449969336836e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.34.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.34.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.0004617141968596226,
+      "local_relative_mse": 0.001104494237604262,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.43.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.43.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.00045991123815946233,
+      "local_relative_mse": 7.146357490704309e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::context_embedder",
+      "members": [
+        "context_embedder"
+      ],
+      "parameters": 27525120,
+      "sensitivity_score": 0.00045766833755334074,
+      "local_relative_mse": 0.0013134480892954023,
+      "forced_bf16": false,
+      "precision": "BF16"
+    },
+    {
+      "group": "qkv::transformer_blocks.3.attn.main",
+      "members": [
+        "transformer_blocks.3.attn.to_k",
+        "transformer_blocks.3.attn.to_q",
+        "transformer_blocks.3.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0004561477423684689,
+      "local_relative_mse": 0.0005318592041588354,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.37.attn.main",
+      "members": [
+        "transformer_blocks.37.attn.to_k",
+        "transformer_blocks.37.attn.to_q",
+        "transformer_blocks.37.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0004531317602634816,
+      "local_relative_mse": 0.000579098599758035,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.2.attn.main",
+      "members": [
+        "transformer_blocks.2.attn.to_k",
+        "transformer_blocks.2.attn.to_q",
+        "transformer_blocks.2.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0004525879990203408,
+      "local_relative_mse": 0.00047401494622373736,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.34.attn.to_out.0",
+      "members": [
+        "transformer_blocks.34.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.00045250313227278944,
+      "local_relative_mse": 0.0018028521198179038,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.40.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.40.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.00044979908008981414,
+      "local_relative_mse": 7.285778180027813e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.5.attn.main",
+      "members": [
+        "transformer_blocks.5.attn.to_k",
+        "transformer_blocks.5.attn.to_q",
+        "transformer_blocks.5.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.00042740963408213886,
+      "local_relative_mse": 0.00044176665638672553,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.44.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.44.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.00042679243173517187,
+      "local_relative_mse": 6.80330752558895e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.35.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.35.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.00042563624155333784,
+      "local_relative_mse": 7.523830861397276e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.45.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.45.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.0004202109338628312,
+      "local_relative_mse": 7.056216773856313e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.35.attn.main",
+      "members": [
+        "transformer_blocks.35.attn.to_k",
+        "transformer_blocks.35.attn.to_q",
+        "transformer_blocks.35.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0004187676710749599,
+      "local_relative_mse": 0.0005400817463825558,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.38.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.38.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.00041632420539993635,
+      "local_relative_mse": 7.543970712328814e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.38.ff.net.2",
+      "members": [
+        "transformer_blocks.38.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 0.00038984573408695674,
+      "local_relative_mse": 0.0014335499939024316,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.0.ff.net.2",
+      "members": [
+        "transformer_blocks.0.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 0.0003831372311912037,
+      "local_relative_mse": 0.0006265847278216306,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.14.attn.main",
+      "members": [
+        "transformer_blocks.14.attn.to_k",
+        "transformer_blocks.14.attn.to_q",
+        "transformer_blocks.14.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.00037985973202705765,
+      "local_relative_mse": 0.0007942233987379535,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.34.attn.main",
+      "members": [
+        "transformer_blocks.34.attn.to_k",
+        "transformer_blocks.34.attn.to_q",
+        "transformer_blocks.34.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0003737886979656768,
+      "local_relative_mse": 0.0005936040898075598,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.33.attn.main",
+      "members": [
+        "transformer_blocks.33.attn.to_k",
+        "transformer_blocks.33.attn.to_q",
+        "transformer_blocks.33.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.00036724897742159964,
+      "local_relative_mse": 0.0005380993247334681,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.37.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.37.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.0003569701668458836,
+      "local_relative_mse": 7.362101330529443e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.33.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.33.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.00035488794805340056,
+      "local_relative_mse": 0.0012014127680057708,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.36.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.36.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.00034992459418422845,
+      "local_relative_mse": 7.49248008194642e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.18.attn.main",
+      "members": [
+        "transformer_blocks.18.attn.to_k",
+        "transformer_blocks.18.attn.to_q",
+        "transformer_blocks.18.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.00034366050802889226,
+      "local_relative_mse": 0.0007889501790814732,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.32.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.32.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.0003378346963556553,
+      "local_relative_mse": 0.0011760614586802515,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.33.attn.to_out.0",
+      "members": [
+        "transformer_blocks.33.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.00033429084442285054,
+      "local_relative_mse": 0.0018885583360532523,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.32.attn.to_out.0",
+      "members": [
+        "transformer_blocks.32.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.0003303166393091206,
+      "local_relative_mse": 0.0015427198425129376,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.36.ff.net.2",
+      "members": [
+        "transformer_blocks.36.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 0.0003295934962564954,
+      "local_relative_mse": 0.0012572152135344587,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.35.ff.net.2",
+      "members": [
+        "transformer_blocks.35.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 0.0003278673212970062,
+      "local_relative_mse": 0.001311757367958135,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.30.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.30.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.00031434946661599433,
+      "local_relative_mse": 0.0011620844046681589,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.31.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.31.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.00031314613905937603,
+      "local_relative_mse": 0.0012154874095146439,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.37.ff.net.2",
+      "members": [
+        "transformer_blocks.37.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 0.00031111549515397543,
+      "local_relative_mse": 0.0014097346401717383,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.28.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.28.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.0003091660712570812,
+      "local_relative_mse": 0.0011336284684475325,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.29.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.29.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.00029471800704790855,
+      "local_relative_mse": 0.0011482442657802375,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.31.attn.to_out.0",
+      "members": [
+        "transformer_blocks.31.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.0002936237059476274,
+      "local_relative_mse": 0.0017237931314140642,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.34.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.34.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.00029275680366482704,
+      "local_relative_mse": 7.541260519292591e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.32.attn.main",
+      "members": [
+        "transformer_blocks.32.attn.to_k",
+        "transformer_blocks.32.attn.to_q",
+        "transformer_blocks.32.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.00029254105276635775,
+      "local_relative_mse": 0.000567570357456121,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.17.attn.main",
+      "members": [
+        "transformer_blocks.17.attn.to_k",
+        "transformer_blocks.17.attn.to_q",
+        "transformer_blocks.17.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0002864660170859104,
+      "local_relative_mse": 0.000822890096881663,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.1.attn.to_out.0",
+      "members": [
+        "transformer_blocks.1.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.00028503209595240716,
+      "local_relative_mse": 0.00044500427952287336,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.29.attn.main",
+      "members": [
+        "transformer_blocks.29.attn.to_k",
+        "transformer_blocks.29.attn.to_q",
+        "transformer_blocks.29.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.00027727171673625406,
+      "local_relative_mse": 0.0005797690081174171,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.0.attn.to_out.0",
+      "members": [
+        "transformer_blocks.0.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.00026687865464417585,
+      "local_relative_mse": 0.0003965572475739928,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.31.attn.main",
+      "members": [
+        "transformer_blocks.31.attn.to_k",
+        "transformer_blocks.31.attn.to_q",
+        "transformer_blocks.31.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.00026463818941683517,
+      "local_relative_mse": 0.0005730970126100886,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.27.attn.main",
+      "members": [
+        "transformer_blocks.27.attn.to_k",
+        "transformer_blocks.27.attn.to_q",
+        "transformer_blocks.27.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0002570804045485531,
+      "local_relative_mse": 0.0006935689441993561,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.34.ff.net.2",
+      "members": [
+        "transformer_blocks.34.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 0.00025575681073127936,
+      "local_relative_mse": 0.0012795055338381837,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.30.attn.to_out.0",
+      "members": [
+        "transformer_blocks.30.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.00024790035197437945,
+      "local_relative_mse": 0.001499871219627625,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.29.attn.to_out.0",
+      "members": [
+        "transformer_blocks.29.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.00024599614135398083,
+      "local_relative_mse": 0.0013216310867290816,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.20.attn.main",
+      "members": [
+        "transformer_blocks.20.attn.to_k",
+        "transformer_blocks.20.attn.to_q",
+        "transformer_blocks.20.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.00024336324786112254,
+      "local_relative_mse": 0.000776304430130774,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.2.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.2.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.00024264105956817568,
+      "local_relative_mse": 7.84946947141543e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.30.attn.main",
+      "members": [
+        "transformer_blocks.30.attn.to_k",
+        "transformer_blocks.30.attn.to_q",
+        "transformer_blocks.30.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.00024173004623190936,
+      "local_relative_mse": 0.0006037278640157095,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.21.attn.main",
+      "members": [
+        "transformer_blocks.21.attn.to_k",
+        "transformer_blocks.21.attn.to_q",
+        "transformer_blocks.21.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.00023371846842720756,
+      "local_relative_mse": 0.0008373775753106198,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.16.attn.main",
+      "members": [
+        "transformer_blocks.16.attn.to_k",
+        "transformer_blocks.16.attn.to_q",
+        "transformer_blocks.16.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.00023256349307325662,
+      "local_relative_mse": 0.0008061648933866364,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.33.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.33.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.0002285733561724452,
+      "local_relative_mse": 7.477595527445606e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.4.attn.main",
+      "members": [
+        "transformer_blocks.4.attn.to_k",
+        "transformer_blocks.4.attn.to_q",
+        "transformer_blocks.4.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.00022715001975152463,
+      "local_relative_mse": 0.0007131382219244006,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.13.attn.main",
+      "members": [
+        "transformer_blocks.13.attn.to_k",
+        "transformer_blocks.13.attn.to_q",
+        "transformer_blocks.13.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0002259771821733674,
+      "local_relative_mse": 0.0008515644915564874,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.28.attn.main",
+      "members": [
+        "transformer_blocks.28.attn.to_k",
+        "transformer_blocks.28.attn.to_q",
+        "transformer_blocks.28.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.00022397794144717165,
+      "local_relative_mse": 0.0006198019424598975,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::token_refiner.refiner_blocks.0.attn.main",
+      "members": [
+        "token_refiner.refiner_blocks.0.attn.to_k",
+        "token_refiner.refiner_blocks.0.attn.to_q",
+        "token_refiner.refiner_blocks.0.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0002100581398897214,
+      "local_relative_mse": 0.00033757985973794453,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.6.attn.main",
+      "members": [
+        "transformer_blocks.6.attn.to_k",
+        "transformer_blocks.6.attn.to_q",
+        "transformer_blocks.6.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.00020512951398093138,
+      "local_relative_mse": 0.0007150113160479605,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.11.attn.main",
+      "members": [
+        "transformer_blocks.11.attn.to_k",
+        "transformer_blocks.11.attn.to_q",
+        "transformer_blocks.11.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.00020372409691619037,
+      "local_relative_mse": 0.000799224466683636,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.27.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.27.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.00020218684912580085,
+      "local_relative_mse": 0.00112319862808901,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.3.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.3.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.0002006973964520905,
+      "local_relative_mse": 8.393735164592935e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.22.attn.main",
+      "members": [
+        "transformer_blocks.22.attn.to_k",
+        "transformer_blocks.22.attn.to_q",
+        "transformer_blocks.22.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.00019242364328397331,
+      "local_relative_mse": 0.0008550819590771143,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.26.attn.main",
+      "members": [
+        "transformer_blocks.26.attn.to_k",
+        "transformer_blocks.26.attn.to_q",
+        "transformer_blocks.26.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.00019182414712252366,
+      "local_relative_mse": 0.0007149173273830877,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.33.ff.net.2",
+      "members": [
+        "transformer_blocks.33.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 0.00019058866851061492,
+      "local_relative_mse": 0.0012110018816472938,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::token_refiner.refiner_blocks.0.attn.to_out.0",
+      "members": [
+        "token_refiner.refiner_blocks.0.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.0001899370892043719,
+      "local_relative_mse": 0.0002469699604114731,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.12.attn.main",
+      "members": [
+        "transformer_blocks.12.attn.to_k",
+        "transformer_blocks.12.attn.to_q",
+        "transformer_blocks.12.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.00018886800449281958,
+      "local_relative_mse": 0.0007599645350163249,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.18.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.18.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.00018699281468229358,
+      "local_relative_mse": 0.0010108140678801705,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.0.attn.main",
+      "members": [
+        "transformer_blocks.0.attn.to_k",
+        "transformer_blocks.0.attn.to_q",
+        "transformer_blocks.0.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.00018567470406532385,
+      "local_relative_mse": 0.0002489696045998752,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::token_refiner.refiner_blocks.0.ff.net.0.proj",
+      "members": [
+        "token_refiner.refiner_blocks.0.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.0001851643080842314,
+      "local_relative_mse": 0.00041783176017984124,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.7.attn.main",
+      "members": [
+        "transformer_blocks.7.attn.to_k",
+        "transformer_blocks.7.attn.to_q",
+        "transformer_blocks.7.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.00018407668997369944,
+      "local_relative_mse": 0.0007391119220313885,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.23.attn.main",
+      "members": [
+        "transformer_blocks.23.attn.to_k",
+        "transformer_blocks.23.attn.to_q",
+        "transformer_blocks.23.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0001827829551682976,
+      "local_relative_mse": 0.0008340846272029635,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.9.attn.main",
+      "members": [
+        "transformer_blocks.9.attn.to_k",
+        "transformer_blocks.9.attn.to_q",
+        "transformer_blocks.9.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.00018206300255552043,
+      "local_relative_mse": 0.0007836556153703619,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.32.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.32.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.0001815193252664377,
+      "local_relative_mse": 7.2132940345699e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.8.attn.main",
+      "members": [
+        "transformer_blocks.8.attn.to_k",
+        "transformer_blocks.8.attn.to_q",
+        "transformer_blocks.8.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.00018082918866589608,
+      "local_relative_mse": 0.0007559217344988698,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.19.attn.to_out.0",
+      "members": [
+        "transformer_blocks.19.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.00017471211739542288,
+      "local_relative_mse": 0.0009021378478131627,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.27.attn.to_out.0",
+      "members": [
+        "transformer_blocks.27.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.00017338716347374902,
+      "local_relative_mse": 0.0010781894733334796,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.26.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.26.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.0001723915006452609,
+      "local_relative_mse": 0.0011347959930598963,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.25.attn.main",
+      "members": [
+        "transformer_blocks.25.attn.to_k",
+        "transformer_blocks.25.attn.to_q",
+        "transformer_blocks.25.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0001704636579905261,
+      "local_relative_mse": 0.0007804018292007269,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.28.attn.to_out.0",
+      "members": [
+        "transformer_blocks.28.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.00016717266781709128,
+      "local_relative_mse": 0.0010781087731843184,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.15.attn.main",
+      "members": [
+        "transformer_blocks.15.attn.to_k",
+        "transformer_blocks.15.attn.to_q",
+        "transformer_blocks.15.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0001634460930314286,
+      "local_relative_mse": 0.0008034461056515824,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.30.ff.net.2",
+      "members": [
+        "transformer_blocks.30.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 0.0001597664545326531,
+      "local_relative_mse": 0.00113496438135029,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.32.ff.net.2",
+      "members": [
+        "transformer_blocks.32.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 0.00015845589786681472,
+      "local_relative_mse": 0.0011903547210901978,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.10.attn.main",
+      "members": [
+        "transformer_blocks.10.attn.to_k",
+        "transformer_blocks.10.attn.to_q",
+        "transformer_blocks.10.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.0001581155599243736,
+      "local_relative_mse": 0.0007987446297676597,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.19.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.19.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.00015809891457848046,
+      "local_relative_mse": 0.001041854609814938,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.31.ff.net.2",
+      "members": [
+        "transformer_blocks.31.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 0.00015472741693933498,
+      "local_relative_mse": 0.0011901899292002089,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.20.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.20.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.00015434990195053902,
+      "local_relative_mse": 0.0010628459571744167,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.3.attn.to_out.0",
+      "members": [
+        "transformer_blocks.3.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.0001541134834634841,
+      "local_relative_mse": 0.0006541415987623309,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.25.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.25.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.00015332317389665716,
+      "local_relative_mse": 0.0010957339480987002,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.21.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.21.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.00015047096330603814,
+      "local_relative_mse": 0.0010671845046166348,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.31.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.31.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.00014753642108969464,
+      "local_relative_mse": 7.617385899274096e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.22.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.22.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.00014423641800378478,
+      "local_relative_mse": 0.0010684886962545465,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.29.ff.net.2",
+      "members": [
+        "transformer_blocks.29.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 0.00014296727614847516,
+      "local_relative_mse": 0.0010740617511391065,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.24.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.24.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.00013736264709243414,
+      "local_relative_mse": 0.0010731735112065744,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.23.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.23.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.00013664182948400658,
+      "local_relative_mse": 0.001072647975279902,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::transformer_blocks.24.attn.main",
+      "members": [
+        "transformer_blocks.24.attn.to_k",
+        "transformer_blocks.24.attn.to_q",
+        "transformer_blocks.24.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 0.00013419285380612386,
+      "local_relative_mse": 0.0008226573479085841,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.18.attn.to_out.0",
+      "members": [
+        "transformer_blocks.18.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.00013150882609660604,
+      "local_relative_mse": 0.0008519039574936949,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::token_refiner.refiner_blocks.1.ff.net.0.proj",
+      "members": [
+        "token_refiner.refiner_blocks.1.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.00012868810226421474,
+      "local_relative_mse": 0.0004869983282835781,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.2.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.2.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.00012399414823846024,
+      "local_relative_mse": 0.0008260457350283791,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::norm_out.linear",
+      "members": [
+        "norm_out.linear"
+      ],
+      "parameters": 28901376,
+      "sensitivity_score": 0.0001231747960181153,
+      "local_relative_mse": 4.732430854485424e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.28.ff.net.2",
+      "members": [
+        "transformer_blocks.28.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 0.00012202103469228593,
+      "local_relative_mse": 0.0010030364267666725,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.30.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.30.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 0.0001210875721776365,
+      "local_relative_mse": 7.363968362506201e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.17.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.17.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.00012056529001463047,
+      "local_relative_mse": 0.00103000742723077,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.26.attn.to_out.0",
+      "members": [
+        "transformer_blocks.26.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.00012053145464877466,
+      "local_relative_mse": 0.0010490372862793696,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.9.attn.to_out.0",
+      "members": [
+        "transformer_blocks.9.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.00010347639252670761,
+      "local_relative_mse": 0.0009892850349930906,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.12.attn.to_out.0",
+      "members": [
+        "transformer_blocks.12.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.00010312863486586704,
+      "local_relative_mse": 0.0009473138058018879,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.3.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.3.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 0.00010275077655591884,
+      "local_relative_mse": 0.0010502419673610618,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.20.attn.to_out.0",
+      "members": [
+        "transformer_blocks.20.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.00010248152504138659,
+      "local_relative_mse": 0.0009167316437952953,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.2.attn.to_out.0",
+      "members": [
+        "transformer_blocks.2.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 0.00010191657252120604,
+      "local_relative_mse": 0.0003327486867808271,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.15.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.15.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 9.710313439446754e-05,
+      "local_relative_mse": 0.0009898716688959586,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.11.attn.to_out.0",
+      "members": [
+        "transformer_blocks.11.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 9.659802348883377e-05,
+      "local_relative_mse": 0.0010140673781718615,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.6.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.6.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 9.480453708396261e-05,
+      "local_relative_mse": 0.0008316483623900838,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.29.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.29.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 9.330446382002147e-05,
+      "local_relative_mse": 7.697770915406927e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.16.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.16.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 9.226110337176056e-05,
+      "local_relative_mse": 0.0009538235042514025,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.14.attn.to_out.0",
+      "members": [
+        "transformer_blocks.14.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 9.177302000277437e-05,
+      "local_relative_mse": 0.0010095285693127855,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.16.attn.to_out.0",
+      "members": [
+        "transformer_blocks.16.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 8.751366801823554e-05,
+      "local_relative_mse": 0.0009147494142987325,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.21.attn.to_out.0",
+      "members": [
+        "transformer_blocks.21.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 8.727939277445104e-05,
+      "local_relative_mse": 0.0009816149109446216,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.7.attn.to_out.0",
+      "members": [
+        "transformer_blocks.7.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 8.654403245861623e-05,
+      "local_relative_mse": 0.0008892231786523596,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.13.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.13.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 8.614067556267434e-05,
+      "local_relative_mse": 0.0009471400338898601,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.12.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.12.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 8.583355862539565e-05,
+      "local_relative_mse": 0.0009769293993332985,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.27.ff.net.2",
+      "members": [
+        "transformer_blocks.27.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 8.527842807224808e-05,
+      "local_relative_mse": 0.0009701459830137526,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.15.attn.to_out.0",
+      "members": [
+        "transformer_blocks.15.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 8.474037096824094e-05,
+      "local_relative_mse": 0.000970747825796304,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.22.attn.to_out.0",
+      "members": [
+        "transformer_blocks.22.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 8.29757345527654e-05,
+      "local_relative_mse": 0.0010304410375386876,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.28.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.28.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 8.260545161057175e-05,
+      "local_relative_mse": 8.209003533539795e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.11.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.11.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 8.255131939874903e-05,
+      "local_relative_mse": 0.001023499447498267,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.6.attn.to_out.0",
+      "members": [
+        "transformer_blocks.6.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 8.192184826711735e-05,
+      "local_relative_mse": 0.0008608106414035765,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::token_refiner.refiner_blocks.1.ff.net.2",
+      "members": [
+        "token_refiner.refiner_blocks.1.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 8.181826376897553e-05,
+      "local_relative_mse": 0.0006005955090959121,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.2.ff.net.2",
+      "members": [
+        "transformer_blocks.2.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 8.153960173932016e-05,
+      "local_relative_mse": 0.000632045577989342,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.9.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.9.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 7.992381193590089e-05,
+      "local_relative_mse": 0.0009031337310153149,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.17.attn.to_out.0",
+      "members": [
+        "transformer_blocks.17.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 7.977125530789964e-05,
+      "local_relative_mse": 0.0009188698377327984,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.13.attn.to_out.0",
+      "members": [
+        "transformer_blocks.13.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 7.969765946471547e-05,
+      "local_relative_mse": 0.00102138908852652,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.25.attn.to_out.0",
+      "members": [
+        "transformer_blocks.25.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 7.902961855521197e-05,
+      "local_relative_mse": 0.000983829216402473,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.8.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.8.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 7.856029805035045e-05,
+      "local_relative_mse": 0.0008965192585298794,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.26.ff.net.2",
+      "members": [
+        "transformer_blocks.26.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 7.849526468936227e-05,
+      "local_relative_mse": 0.0010422147606282968,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.23.attn.to_out.0",
+      "members": [
+        "transformer_blocks.23.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 7.591828693111952e-05,
+      "local_relative_mse": 0.0010453438616393517,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.4.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.4.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 7.475010032731331e-05,
+      "local_relative_mse": 0.0010267275760184312,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.8.attn.to_out.0",
+      "members": [
+        "transformer_blocks.8.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 7.420904284060892e-05,
+      "local_relative_mse": 0.000880486742563752,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.25.ff.net.2",
+      "members": [
+        "transformer_blocks.25.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 7.411577594829714e-05,
+      "local_relative_mse": 0.0010956320194471221,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.7.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.7.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 7.17228715516174e-05,
+      "local_relative_mse": 0.0007910158952914376,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.3.ff.net.2",
+      "members": [
+        "transformer_blocks.3.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 7.087371744402557e-05,
+      "local_relative_mse": 0.0009286145835937112,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.10.attn.to_out.0",
+      "members": [
+        "transformer_blocks.10.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 6.9637125612045e-05,
+      "local_relative_mse": 0.0009618452378528251,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.14.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.14.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 6.928754874624178e-05,
+      "local_relative_mse": 0.0009814749558071378,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.24.attn.to_out.0",
+      "members": [
+        "transformer_blocks.24.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 6.801678275918276e-05,
+      "local_relative_mse": 0.0010292951191560823,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.18.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.18.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 6.682108044124839e-05,
+      "local_relative_mse": 9.162256631793531e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.26.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.26.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 6.610149771106291e-05,
+      "local_relative_mse": 8.682748483100129e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.4.attn.to_out.0",
+      "members": [
+        "transformer_blocks.4.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 6.506574012988882e-05,
+      "local_relative_mse": 0.0005837333441397328,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.27.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.27.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 6.418153551521239e-05,
+      "local_relative_mse": 8.352243754358873e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.10.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.10.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 6.185117038536744e-05,
+      "local_relative_mse": 0.0009204686441666305,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.25.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.25.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 5.9824532586985224e-05,
+      "local_relative_mse": 8.487180812842885e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.19.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.19.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 5.829542857587504e-05,
+      "local_relative_mse": 9.266414021169686e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.18.ff.net.2",
+      "members": [
+        "transformer_blocks.18.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 5.785783388741643e-05,
+      "local_relative_mse": 0.0008609632312029738,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "qkv::token_refiner.refiner_blocks.1.attn.main",
+      "members": [
+        "token_refiner.refiner_blocks.1.attn.to_k",
+        "token_refiner.refiner_blocks.1.attn.to_q",
+        "token_refiner.refiner_blocks.1.attn.to_v"
+      ],
+      "parameters": 115605504,
+      "sensitivity_score": 5.654293245418434e-05,
+      "local_relative_mse": 0.0007224083795855008,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.17.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.17.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 5.647876761320539e-05,
+      "local_relative_mse": 8.33400659371305e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.5.ff.net.0.proj",
+      "members": [
+        "transformer_blocks.5.ff.net.0.proj"
+      ],
+      "parameters": 154140672,
+      "sensitivity_score": 5.541286115749821e-05,
+      "local_relative_mse": 0.0009749860679531674,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.19.ff.net.2",
+      "members": [
+        "transformer_blocks.19.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 5.463159801498808e-05,
+      "local_relative_mse": 0.0010205622574041453,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.24.ff.net.2",
+      "members": [
+        "transformer_blocks.24.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 5.051082048443823e-05,
+      "local_relative_mse": 0.0010587437840744005,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.23.ff.net.2",
+      "members": [
+        "transformer_blocks.23.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 4.970111010640715e-05,
+      "local_relative_mse": 0.001100059074953289,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.4.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.4.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 4.9378473465676056e-05,
+      "local_relative_mse": 7.963615072689817e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.6.ff.net.2",
+      "members": [
+        "transformer_blocks.6.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 4.9260126992505636e-05,
+      "local_relative_mse": 0.001159464632760774,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.20.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.20.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 4.838409088185299e-05,
+      "local_relative_mse": 8.954245675610037e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.17.ff.net.2",
+      "members": [
+        "transformer_blocks.17.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 4.8364596958026705e-05,
+      "local_relative_mse": 0.0010245767520699832,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.20.ff.net.2",
+      "members": [
+        "transformer_blocks.20.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 4.82116052920518e-05,
+      "local_relative_mse": 0.0010999088151503454,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.6.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.6.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 4.740936766316438e-05,
+      "local_relative_mse": 8.994520979438441e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.21.ff.net.2",
+      "members": [
+        "transformer_blocks.21.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 4.528335206394805e-05,
+      "local_relative_mse": 0.0011292723570895948,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.22.ff.net.2",
+      "members": [
+        "transformer_blocks.22.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 4.4206397324703e-05,
+      "local_relative_mse": 0.0011170951419188075,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::token_refiner.refiner_blocks.0.ff.net.2",
+      "members": [
+        "token_refiner.refiner_blocks.0.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 3.997224239539252e-05,
+      "local_relative_mse": 0.0010556269032352716,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.4.ff.net.2",
+      "members": [
+        "transformer_blocks.4.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 3.9326032695913816e-05,
+      "local_relative_mse": 0.001082153208201554,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::token_refiner.refiner_blocks.1.attn.to_out.0",
+      "members": [
+        "token_refiner.refiner_blocks.1.attn.to_out.0"
+      ],
+      "parameters": 38535168,
+      "sensitivity_score": 3.7535940379289967e-05,
+      "local_relative_mse": 0.0005481827695982195,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.14.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.14.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 3.641224597545455e-05,
+      "local_relative_mse": 8.091519752561969e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.7.ff.net.2",
+      "members": [
+        "transformer_blocks.7.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 3.476923519445178e-05,
+      "local_relative_mse": 0.0011255595105445358,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.24.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.24.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 3.426464954885371e-05,
+      "local_relative_mse": 8.463149385606784e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.8.ff.net.2",
+      "members": [
+        "transformer_blocks.8.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 3.378652153266448e-05,
+      "local_relative_mse": 0.001189876317178434,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.11.ff.net.2",
+      "members": [
+        "transformer_blocks.11.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 3.246352744812915e-05,
+      "local_relative_mse": 0.0011416392660411245,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.9.ff.net.2",
+      "members": [
+        "transformer_blocks.9.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 3.1460226674391714e-05,
+      "local_relative_mse": 0.0011741245570014598,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.12.ff.net.2",
+      "members": [
+        "transformer_blocks.12.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 3.145991804796201e-05,
+      "local_relative_mse": 0.0011833179933218212,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.15.ff.net.2",
+      "members": [
+        "transformer_blocks.15.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 3.0932898334389225e-05,
+      "local_relative_mse": 0.0010543341442243038,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.13.ff.net.2",
+      "members": [
+        "transformer_blocks.13.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 2.8558393238529027e-05,
+      "local_relative_mse": 0.0011692941004971416,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.16.ff.net.2",
+      "members": [
+        "transformer_blocks.16.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 2.817634877439523e-05,
+      "local_relative_mse": 0.0011064832927998825,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.5.ff.net.2",
+      "members": [
+        "transformer_blocks.5.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 2.6977521047351318e-05,
+      "local_relative_mse": 0.0011040968214137492,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.9.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.9.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 2.658703540220753e-05,
+      "local_relative_mse": 9.012260675015984e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.14.ff.net.2",
+      "members": [
+        "transformer_blocks.14.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 2.4512111209206186e-05,
+      "local_relative_mse": 0.0011288510285166725,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.7.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.7.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 2.4343094155264278e-05,
+      "local_relative_mse": 8.995306508475162e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.10.ff.net.2",
+      "members": [
+        "transformer_blocks.10.ff.net.2"
+      ],
+      "parameters": 77070336,
+      "sensitivity_score": 2.286657899677906e-05,
+      "local_relative_mse": 0.0012157129580246894,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.11.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.11.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 2.2412725458869618e-05,
+      "local_relative_mse": 9.192408543899172e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.23.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.23.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 2.2091603810364168e-05,
+      "local_relative_mse": 8.697841743448188e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.16.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.16.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 2.193837367735765e-05,
+      "local_relative_mse": 9.316543206230424e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.21.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.21.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 2.029321752468694e-05,
+      "local_relative_mse": 8.71200159305532e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.15.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.15.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 2.012171340961103e-05,
+      "local_relative_mse": 9.22917283624503e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.13.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.13.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 1.9739008273866976e-05,
+      "local_relative_mse": 8.242599286710006e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.8.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.8.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 1.9392911779614222e-05,
+      "local_relative_mse": 9.339861141348145e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.10.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.10.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 1.8370567005873302e-05,
+      "local_relative_mse": 9.13999410406805e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.12.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.12.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 1.8156040772219575e-05,
+      "local_relative_mse": 8.489274525572116e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::transformer_blocks.22.adaln_proj.linear",
+      "members": [
+        "transformer_blocks.22.adaln_proj.linear"
+      ],
+      "parameters": 260112384,
+      "sensitivity_score": 1.7621287136971002e-05,
+      "local_relative_mse": 8.110870723591405e-05,
+      "forced_bf16": false,
+      "precision": "FP8"
+    },
+    {
+      "group": "linear::proj_in",
+      "members": [
+        "proj_in"
+      ],
+      "parameters": 516096,
+      "sensitivity_score": 0.0,
+      "local_relative_mse": 0.0,
+      "forced_bf16": true,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::audio_proj_in",
+      "members": [
+        "audio_proj_in"
+      ],
+      "parameters": 172032,
+      "sensitivity_score": 0.0,
+      "local_relative_mse": 0.0,
+      "forced_bf16": true,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::time_embedder.linear_1",
+      "members": [
+        "time_embedder.linear_1"
+      ],
+      "parameters": 1376256,
+      "sensitivity_score": 0.0,
+      "local_relative_mse": 0.0,
+      "forced_bf16": true,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::time_embedder.linear_2",
+      "members": [
+        "time_embedder.linear_2"
+      ],
+      "parameters": 14450688,
+      "sensitivity_score": 0.0,
+      "local_relative_mse": 0.0,
+      "forced_bf16": true,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::proj_out",
+      "members": [
+        "proj_out"
+      ],
+      "parameters": 516096,
+      "sensitivity_score": 0.0,
+      "local_relative_mse": 0.0,
+      "forced_bf16": true,
+      "precision": "BF16"
+    },
+    {
+      "group": "linear::audio_proj_out",
+      "members": [
+        "audio_proj_out"
+      ],
+      "parameters": 172032,
+      "sensitivity_score": 0.0,
+      "local_relative_mse": 0.0,
+      "forced_bf16": true,
+      "precision": "BF16"
+    }
+  ]
+}

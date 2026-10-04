@@ -1,0 +1,648 @@
+# SPDX-License-Identifier: Apache-2.0
+"""MiniMax H3 cfg-distilled full denoise loop.
+
+Per step, the positive presentation is forwarded exactly once. Video and audio
+target rows chain through the Euler-eta0 update while visual and audio condition
+rows stay pinned to their noised step-0 anchors.
+"""
+
+from __future__ import annotations
+
+from collections.abc import Callable
+from contextlib import AbstractContextManager, nullcontext
+from typing import Any
+
+import os
+import torch
+
+from .scheduling_minimax_h3_euler_ancestral import (
+    minimax_h3_euler_eta0_step,
+    minimax_h3_rf_v_to_x0,
+)
+
+MINIMAX_H3_IMGVID_COND_TIMESTEP = 0.999
+# ref2va audio reference anchor timestep
+MINIMAX_H3_AUDIO_REF_COND_TIMESTEP = 1.0
+# Packed row widths: video rows are [1,2,2]-patchified 24-channel latents
+# (24 * 1 * 2 * 2 = 96); audio rows carry the 32-dim audio latent.
+MINIMAX_H3_VIDEO_ROW_WIDTH = 96
+MINIMAX_H3_AUDIO_ROW_WIDTH = 32
+
+
+class MiniMaxH3DenoiseBranch:
+    """Static per-branch state: packed layout + fixed forward kwargs.
+
+    `packed` is a minimax_h3_packed_sequence(...) result (or equivalent layout
+    dict); `text_embeddings` is the branch's [text_len, 5120] hidden states;
+    `token_tags` must already carry any fl2va vision-span overrides.
+    """
+
+    def __init__(
+        self,
+        *,
+        packed: dict[str, torch.Tensor],
+        text_embeddings: torch.Tensor,
+        token_tags: torch.Tensor,
+        device: torch.device,
+    ) -> None:
+        seq_len = int(packed["seq_len"])
+        self.seq_len = seq_len
+        self.img_pos = packed["img_pos"].view(-1).to(torch.long)
+        self.audio_pos = packed["audio_pos"].view(-1).to(torch.long)
+        self.update_mask = packed["update_mask"].view(-1).to(torch.bool)
+        # ref2va: audio_pos may include reference-audio anchor rows
+        # (audio_update_mask False); absent means all rows are targets.
+        if "audio_update_mask" in packed:
+            self.audio_update_mask = packed["audio_update_mask"].view(-1).to(torch.bool)
+        else:
+            self.audio_update_mask = torch.ones(self.audio_pos.shape[0], dtype=torch.bool)
+        text_len = int(packed["text_pos"].view(-1).shape[0])
+        if list(text_embeddings.shape)[0] != text_len:
+            raise ValueError(f"text_embeddings rows {list(text_embeddings.shape)} != packed text_len {text_len}")
+        if int(token_tags.view(-1).shape[0]) != seq_len:
+            raise ValueError(f"token_tags length {int(token_tags.view(-1).shape[0])} != seq_len {seq_len}")
+        cu = packed["cu_seqlens"].to(torch.int32)
+        self.img_pos_dev = self.img_pos.to(device)
+        self.audio_pos_dev = self.audio_pos.to(device)
+        self.update_mask_dev = self.update_mask.to(device)
+        self.audio_update_mask_dev = self.audio_update_mask.to(device)
+        self.x_base = torch.zeros(1, seq_len, MINIMAX_H3_VIDEO_ROW_WIDTH, dtype=torch.float32, device=device)
+        self.audio_x_base = torch.zeros(1, seq_len, MINIMAX_H3_AUDIO_ROW_WIDTH, dtype=torch.float32, device=device)
+        text_pos_dev = packed["text_pos"].view(-1).to(torch.long).to(device)
+        self.static_kwargs: dict[str, Any] = {
+            "img_position_ids": packed["img_position_ids"][None].to(device),
+            "update_mask": self.update_mask_dev,
+            "token_tags": token_tags.view(-1).to(torch.long).to(device),
+            "skip_mask_out_condition": False,
+            "prompt_embeds": text_embeddings.to(device),
+            "img_pos_info": {"position_ids": self.img_pos_dev},
+            "audio_pos_info": {"position_ids": self.audio_pos_dev},
+            "text_pos_info": {"position_ids": text_pos_dev},
+            "img_pos_for_infer_output_info": {"position_ids": self.img_pos_dev},
+            "packed_seq_params": {
+                "cu_seqlens_q": cu.to(device),
+                "max_seqlen_q": int(cu[1]),
+            },
+            "refiner_packed_seq_params": {
+                "cu_seqlens_q": torch.tensor([0, text_len, text_len], dtype=torch.int32, device=device),
+                "max_seqlen_q": text_len,
+            },
+        }
+
+    def forward_kwargs(
+        self,
+        *,
+        video_rows: torch.Tensor,
+        audio_rows: torch.Tensor,
+        t_video: float,
+        t_audio: float,
+        imgvid_cond_timestep: float,
+        audio_ref_cond_timestep: float,
+    ) -> dict[str, Any]:
+        x = self.x_base.clone()
+        x[0].index_copy_(0, self.img_pos_dev, video_rows)
+        audio_x = self.audio_x_base.clone()
+        audio_x[0].index_copy_(0, self.audio_pos_dev, audio_rows)
+        # Packed-sequence timestep semantics: non-media rows (text and
+        # padding) inherit the current video timestep. Later steps must reuse
+        # the previous step's updated rows; re-initializing from zeros is only
+        # valid at step 0.
+        timesteps = torch.full(
+            (self.seq_len,),
+            float(t_video),
+            dtype=torch.float32,
+            device=x.device,
+        )
+        timesteps[self.img_pos_dev[self.update_mask_dev]] = t_video
+        timesteps[self.img_pos_dev[~self.update_mask_dev]] = imgvid_cond_timestep
+        timesteps[self.audio_pos_dev[self.audio_update_mask_dev]] = t_audio
+        timesteps[self.audio_pos_dev[~self.audio_update_mask_dev]] = audio_ref_cond_timestep
+        unique_timesteps, inverse_indices = torch.unique(timesteps, sorted=True, return_inverse=True)
+        return {
+            **self.static_kwargs,
+            "x": x,
+            "audio_x": audio_x,
+            "unique_timesteps": unique_timesteps,
+            "inverse_indices": inverse_indices,
+        }
+
+
+def minimax_h3_denoise_loop(
+    *,
+    model: Any,
+    positive: MiniMaxH3DenoiseBranch,
+    initial_video_rows: torch.Tensor,
+    initial_audio_rows: torch.Tensor,
+    keyframe_cond_rows: torch.Tensor | None,
+    audio_ref_rows: torch.Tensor | None = None,
+    sigmas_video: list[float],
+    sigmas_audio: list[float],
+    device: torch.device,
+    imgvid_cond_noise_aug_for_inference: float = MINIMAX_H3_IMGVID_COND_TIMESTEP,
+    audio_cond_noise_aug_for_inference: float = MINIMAX_H3_AUDIO_REF_COND_TIMESTEP,
+    on_step: Callable[[int, torch.Tensor, torch.Tensor], None] | None = None,
+    step_profiler: Callable[[int], AbstractContextManager] | None = None,
+) -> tuple[torch.Tensor, torch.Tensor]:
+    """Run the full denoise loop; returns final (video_rows, audio_rows).
+
+    ``initial_video_rows`` covers all image rows of the positive layout. For a
+    conditional task, pass ``keyframe_cond_rows`` and/or ``audio_ref_rows`` to
+    pin those rows across every step. The model's raw positive velocity is the
+    update signal; MiniMax H3 only supports cfg-distilled checkpoints.
+    """
+    if len(sigmas_video) != len(sigmas_audio):
+        raise ValueError("video/audio sigma schedules must have equal length")
+    if len(sigmas_video) < 2:
+        raise ValueError("sigma schedules need at least 2 entries")
+    n_cond = int((~positive.update_mask).sum())
+    if keyframe_cond_rows is None:
+        if n_cond != 0:
+            raise ValueError(f"layout has {n_cond} cond rows but keyframe_cond_rows is None")
+    else:
+        if int(keyframe_cond_rows.shape[0]) != n_cond:
+            raise ValueError(f"keyframe_cond_rows {int(keyframe_cond_rows.shape[0])} != layout cond rows {n_cond}")
+    video_rows = initial_video_rows.to(device=device, dtype=torch.float32).clone()
+    audio_rows = initial_audio_rows.to(device=device, dtype=torch.float32).clone()
+    update = positive.update_mask_dev
+    audio_update = positive.audio_update_mask_dev
+    if int(video_rows.shape[0]) != int(positive.img_pos.shape[0]):
+        raise ValueError(
+            f"initial video rows {int(video_rows.shape[0])} != positive layout rows {int(positive.img_pos.shape[0])}"
+        )
+    if int(audio_rows.shape[0]) != int(positive.audio_pos.shape[0]):
+        raise ValueError(
+            f"initial audio rows {int(audio_rows.shape[0])} != positive layout rows {int(positive.audio_pos.shape[0])}"
+        )
+    n_audio_ref = int((~positive.audio_update_mask).sum())
+    if audio_ref_rows is None:
+        if n_audio_ref != 0:
+            raise ValueError(f"layout has {n_audio_ref} audio ref rows but audio_ref_rows is None")
+        audio_anchor = None
+    else:
+        if int(audio_ref_rows.shape[0]) != n_audio_ref:
+            raise ValueError(f"audio_ref_rows {int(audio_ref_rows.shape[0])} != layout audio ref rows {n_audio_ref}")
+        audio_anchor = audio_ref_rows.to(device=device, dtype=torch.float32)
+    cond_anchor = keyframe_cond_rows.to(device=device, dtype=torch.float32) if keyframe_cond_rows is not None else None
+    if cond_anchor is not None:
+        video_rows[~update] = cond_anchor
+    if audio_anchor is not None:
+        audio_rows[~audio_update] = audio_anchor
+
+    num_steps = len(sigmas_video) - 1
+    for step in range(num_steps):
+        step_cm = step_profiler(step) if step_profiler is not None else nullcontext()
+        with step_cm:
+            s_v, s_v_next = sigmas_video[step], sigmas_video[step + 1]
+            s_a, s_a_next = sigmas_audio[step], sigmas_audio[step + 1]
+            t_v, t_a = 1.0 - s_v, 1.0 - s_a
+            imgvid_cond_t = max(t_v, float(imgvid_cond_noise_aug_for_inference))
+            audio_ref_cond_t = max(t_a, float(audio_cond_noise_aug_for_inference))
+
+            fk = positive.forward_kwargs(
+                video_rows=video_rows,
+                audio_rows=audio_rows,
+                t_video=t_v,
+                t_audio=t_a,
+                imgvid_cond_timestep=imgvid_cond_t,
+                audio_ref_cond_timestep=audio_ref_cond_t,
+            )
+            with torch.inference_mode():
+                v_video, v_audio = model(**fk)
+            mv_video_t = v_video.float()[update]
+            mv_audio_t = v_audio.float()[audio_update]
+
+            # ----- H3_SENSITIVITY: independent condition probes at step 0 -----
+            # (A) timestep sensitivity: sweep target t_v over {0.25,0.5,0.75,1.0},
+            #     reference fixed, measure how much the target velocity moves.
+            # (B) reference sensitivity: zero the cond(reference) rows at t_v=0,
+            #     measure how much the target velocity moves.
+            if os.environ.get("H3_SENSITIVITY", "0") == "1" and step == 0:
+                def _cos(a, b):
+                    a = a.reshape(-1).float(); b = b.reshape(-1).float()
+                    return float((a @ b) / (a.norm() * b.norm() + 1e-9))
+                def _l2rel(a, b):
+                    return float((a - b).norm() / (b.norm() + 1e-9))
+                base_v = mv_video_t.detach().clone()
+                print("H3_SENS base t_v=%.4f v_std=%.4f a_std=%.4f" % (
+                    float(t_v), float(base_v.std()), float(mv_audio_t.float().std())),
+                    flush=True)
+                # (J) block dissection: 拆开看 attention / MLP / gate 哪一段是死的
+                if os.environ.get("H3_SENS_J", "0") == "1":
+                    try:
+                        _blocks = model.blocks
+                        _idxs = [0, 1, 25, 49]
+                        _rec = {}
+                        _handles = []
+
+                        def _mk_block_hook(i):
+                            def hook(m, inp, out):
+                                xin = inp[0]
+                                _o = out[0] if isinstance(out, (tuple, list)) else out
+                                xi = xin.detach().float()
+                                xo = _o.detach().float()
+                                r = _rec.setdefault(i, {})
+                                r["in_norm"] = float(xi.norm())
+                                r["out_norm"] = float(xo.norm())
+                                r["delta_rel"] = float((xo - xi).norm() / (xi.norm() + 1e-9))
+                            return hook
+
+                        def _mk_sub_hook(i, name):
+                            def hook(m, inp, out):
+                                _o = out[0] if isinstance(out, (tuple, list)) else out
+                                _rec.setdefault(i, {})[name] = float(_o.detach().float().norm())
+                            return hook
+
+                        def _mk_adaln_hook(i):
+                            def hook(m, inp, out):
+                                try:
+                                    t = out if isinstance(out, (tuple, list)) else (out,)
+                                    _rec.setdefault(i, {})["adaln"] = [
+                                        round(float(x.detach().float().abs().mean()), 5) for x in t]
+                                except Exception as ex:
+                                    _rec.setdefault(i, {})["adaln"] = "err:%r" % (ex,)
+                            return hook
+
+                        for i in _idxs:
+                            b = _blocks[i]
+                            _handles.append(b.register_forward_hook(_mk_block_hook(i)))
+                            _handles.append(b.attn.register_forward_hook(_mk_sub_hook(i, "attn_out")))
+                            _handles.append(b.mlp.register_forward_hook(_mk_sub_hook(i, "mlp_out")))
+                            _handles.append(b.adaln_proj.register_forward_hook(_mk_adaln_hook(i)))
+
+                        with torch.inference_mode():
+                            _vj, _aj = model(**fk)
+                        for h in _handles:
+                            h.remove()
+
+                        for i in _idxs:
+                            r = _rec.get(i, {})
+                            print("H3_SENS J blk=%-2d in=%.4f out=%.4f delta_rel=%.5f "
+                                  "attn=%.4f mlp=%.4f adaln=%s"
+                                  % (i, r.get("in_norm", -1), r.get("out_norm", -1),
+                                     r.get("delta_rel", -1), r.get("attn_out", -1),
+                                     r.get("mlp_out", -1), r.get("adaln", "NA")), flush=True)
+                        print("H3_SENS J final v_std=%.4f v_absmax=%.4f audio_std=%.4f" % (
+                            float(_vj.float().std()), float(_vj.float().abs().max()),
+                            float(_aj.float().std())), flush=True)
+                        if os.environ.get("H3_SENS_J_EXIT", "0") == "1":
+                            print("H3_SENS J done - early exit", flush=True)
+                            import sys as _sys
+                            _sys.exit(0)
+                    except Exception as _ex:
+                        print("H3_SENS J failed: %r" % (_ex,), flush=True)
+
+                # A 是 4 次额外前向，最贵；只想看 E/F 时用 H3_SENS_EF_ONLY=1 跳过
+                _EF_ONLY = os.environ.get("H3_SENS_EF_ONLY", "0") == "1"
+                for tvx in (() if _EF_ONLY else (0.25, 0.5, 0.75, 1.0)):
+                    imgvid_cond_tx = max(tvx, float(imgvid_cond_noise_aug_for_inference))
+                    fkx = positive.forward_kwargs(
+                        video_rows=video_rows, audio_rows=audio_rows,
+                        t_video=float(tvx), t_audio=t_a,
+                        imgvid_cond_timestep=imgvid_cond_tx,
+                        audio_ref_cond_timestep=audio_ref_cond_t,
+                    )
+                    with torch.inference_mode():
+                        vx, _ = model(**fkx)
+                    vx_u = vx.float()[update]
+                    print("H3_SENS A tvx=%.4f cos_base=%.4f l2rel=%.4f v_std=%.4f" % (
+                        float(tvx), _cos(vx_u, base_v), _l2rel(vx_u, base_v),
+                        float(vx_u.std())), flush=True)
+                vrows_z = video_rows.clone()
+                vrows_z[~update] = 0.0
+                fkz = positive.forward_kwargs(
+                    video_rows=vrows_z, audio_rows=audio_rows,
+                    t_video=t_v, t_audio=t_a,
+                    imgvid_cond_timestep=imgvid_cond_t,
+                    audio_ref_cond_timestep=audio_ref_cond_t,
+                )
+                with torch.inference_mode():
+                    vz, _ = model(**fkz)
+                vz_u = vz.float()[update]
+                print("H3_SENS B zero_ref cos_base=%.4f l2rel=%.4f v_std=%.4f" % (
+                    _cos(vz_u, base_v), _l2rel(vz_u, base_v), float(vz_u.std())),
+                    flush=True)
+                # (C) text-conditioning ablation: zero prompt_embeds only.
+                fkc = positive.forward_kwargs(
+                    video_rows=video_rows, audio_rows=audio_rows,
+                    t_video=t_v, t_audio=t_a,
+                    imgvid_cond_timestep=imgvid_cond_t,
+                    audio_ref_cond_timestep=audio_ref_cond_t,
+                )
+                _pe = fkc.get("prompt_embeds")
+                if _pe is not None:
+                    fkc["prompt_embeds"] = torch.zeros_like(_pe)
+                    with torch.inference_mode():
+                        vc, _ = model(**fkc)
+                    vc_u = vc.float()[update]
+                    print("H3_SENS C zero_text cos_base=%.4f l2rel=%.4f v_std=%.4f" % (
+                        _cos(vc_u, base_v), _l2rel(vc_u, base_v), float(vc_u.std())),
+                        flush=True)
+                else:
+                    print("H3_SENS C skipped: no prompt_embeds kwarg", flush=True)
+                # (E) AdaLN gate statistics: hooks on every block's adaln_proj.
+                # gate_msa occupies columns [2H:3H) of each 6H chunk (chunk order
+                # shift,scale,gate,shift,scale,gate). If gates are ~0 while
+                # shifts/scales are O(1), every block is an identity map and the
+                # model cannot denoise -- that is the "dead modulation" signature.
+                try:
+                    _blocks = None
+                    for attr in ("transformer", "model"):
+                        obj = getattr(model, attr, None)
+                        if obj is not None and hasattr(obj, "blocks"):
+                            _blocks = obj.blocks
+                            break
+                    if _blocks is None and hasattr(model, "blocks"):
+                        _blocks = model.blocks
+                    if _blocks is not None:
+                        _stats = []
+                        _handles = []
+
+                        def _mk_hook(idx):
+                            def hook(m, inp, out):
+                                # hook 的 out 可能是 tuple（模块返回多值），先解包
+                                _o = out[0] if isinstance(out, (tuple, list)) else out
+                                o = _o.detach().float()
+                                # 实际形状是 [M*3, 6H]（sens3 实测 (9, 5376)，
+                                # 即 M=3 模态、6H=5376、H=896）。H 必须由最后一维
+                                # 推算，不能取 adaln_proj.hidden_size（那是 6H）。
+                                if o.dim() != 2 or o.shape[-1] % 6 != 0:
+                                    return
+                                _H = o.shape[-1] // 6
+                                g = o.view(-1, 6, _H)
+                                gate = g[:, 2, :]
+                                shift = g[:, 0, :]
+                                scale = g[:, 1, :]
+                                _stats.append((idx, float(gate.abs().mean()),
+                                               float(gate.abs().max()),
+                                               float(shift.abs().mean()),
+                                               float(scale.abs().mean())))
+                            return hook
+
+                        for bi, blk in enumerate(_blocks):
+                            _handles.append(
+                                blk.adaln_proj.register_forward_hook(_mk_hook(bi)))
+                        fke = positive.forward_kwargs(
+                            video_rows=video_rows, audio_rows=audio_rows,
+                            t_video=t_v, t_audio=t_a,
+                            imgvid_cond_timestep=imgvid_cond_t,
+                            audio_ref_cond_timestep=audio_ref_cond_t,
+                        )
+                        with torch.inference_mode():
+                            model(**fke)
+                        for h in _handles:
+                            h.remove()
+                        for bi, gm, gx, sm, sc in _stats:
+                            if bi in (0, 1, 2, 5, 10, 20, 30, 40, 49):
+                                print("H3_SENS E block=%d gate_absmean=%.4f gate_absmax=%.4f shift_absmean=%.4f scale_absmean=%.4f" % (
+                                    bi, gm, gx, sm, sc), flush=True)
+                        if _stats:
+                            import math as _math
+                            _gmax = max(s[2] for s in _stats)
+                            _gmean = _math.fsum(s[1] for s in _stats) / len(_stats)
+                            print("H3_SENS E summary blocks=%d gate_absmean_mean=%.4f gate_absmax_max=%.4f" % (
+                                len(_stats), _gmean, _gmax), flush=True)
+                    else:
+                        print("H3_SENS E skipped: no .blocks found", flush=True)
+                except Exception as _ex:
+                    print("H3_SENS E failed: %r" % (_ex,), flush=True)
+
+                # (F) 引擎/精度环境审计：cuDNN 开关状态、conv3d 与 patch embedding 的
+                # 实际 dtype。Wan 对照组已证实本机 cuDNN 在 V100+ppc64le 上对
+                # conv3d 选不出引擎（fp32/fp16 全挂，仅 bf16 或关 cuDNN 可过），
+                # 这里确认 H3 主流程是否也踩在同一条路径上。
+                try:
+                    print("H3_SENS F cudnn_enabled=%s cudnn_available=%s cudnn_version=%s" % (
+                        torch.backends.cudnn.enabled,
+                        torch.backends.cudnn.is_available(),
+                        torch.backends.cudnn.version()), flush=True)
+                    _tf = None
+                    for attr in ("transformer", "model"):
+                        _o = getattr(model, attr, None)
+                        if _o is not None:
+                            _tf = _o
+                            break
+                    if _tf is None:
+                        _tf = model
+                    _nconv = 0
+                    for nm, m in _tf.named_modules():
+                        if isinstance(m, torch.nn.Conv3d):
+                            _nconv += 1
+                            if _nconv <= 3:
+                                print("H3_SENS F conv3d=%s dtype=%s kernel=%s" % (
+                                    nm, next(m.parameters()).dtype, m.kernel_size), flush=True)
+                    print("H3_SENS F conv3d_count=%d" % _nconv, flush=True)
+                    for attr in ("patch_embedding", "x_embedder", "proj_in", "img_emb"):
+                        pe = getattr(_tf, attr, None)
+                        if pe is not None:
+                            try:
+                                pd = next(pe.parameters()).dtype
+                            except StopIteration:
+                                pd = "n/a"
+                            print("H3_SENS F patchemb=%s class=%s dtype=%s" % (
+                                attr, type(pe).__name__, pd), flush=True)
+                    # 单个 conv3d 在两种引擎开关下的可运行性对照
+                    for nm, m in _tf.named_modules():
+                        if isinstance(m, torch.nn.Conv3d):
+                            try:
+                                w = next(m.parameters())
+                                x = torch.randn(1, w.shape[1], 2, 8, 8,
+                                                device=w.device, dtype=w.dtype)
+                                _prev = torch.backends.cudnn.enabled
+                                torch.backends.cudnn.enabled = False
+                                y_off = m(x).detach()
+                                torch.backends.cudnn.enabled = True
+                                try:
+                                    y_on = m(x).detach()
+                                    _diff = float((y_off.float() - y_on.float()).abs().max())
+                                    print("H3_SENS F conv3d_run name=%s cudnn_off=OK cudnn_on=OK maxdiff=%.3e"
+                                          % (nm, _diff), flush=True)
+                                except Exception as e2:
+                                    print("H3_SENS F conv3d_run name=%s cudnn_off=OK cudnn_on=FAIL(%s)"
+                                          % (nm, type(e2).__name__), flush=True)
+                                torch.backends.cudnn.enabled = _prev
+                            except Exception as e1:
+                                print("H3_SENS F conv3d_run failed: %r" % (e1,), flush=True)
+                            break
+                except Exception as _ex:
+                    print("H3_SENS F failed: %r" % (_ex,), flush=True)
+
+                # (G) 条件（timestep 嵌入 + adaln 调制）对 timestep 的敏感性。
+                # 决定性判据：若 time_embedder 输出在 t=1.0 / step0 / t=0.03 下
+                # 几乎一致，则 timestep 条件根本没进网络 → 解释“v_std 恒为 0.34”。
+                try:
+                    _cap = {"time": [], "a0": [], "a25": []}
+
+                    def _h_time(mod, inp, out):
+                        _cap["time"].append(out.detach().float().cpu().clone())
+
+                    def _h_adaln(tag):
+                        def _h(mod, inp, out):
+                            # out: 6 元组 (shift/scale/gate) x (msa/mlp)
+                            _cap[tag].append(
+                                tuple(o.detach().float().cpu().clone() for o in out))
+                        return _h
+
+                    _h_time_h = model.time_embedder.register_forward_hook(_h_time)
+                    _h_a0_h = model.blocks[0].adaln_proj.register_forward_hook(_h_adaln("a0"))
+                    _h_a25_h = None
+                    if len(model.blocks) > 25:
+                        _h_a25_h = model.blocks[25].adaln_proj.register_forward_hook(
+                            _h_adaln("a25"))
+
+                    def _g_fwd(tv, ta):
+                        fk2 = positive.forward_kwargs(
+                            video_rows=video_rows, audio_rows=audio_rows,
+                            t_video=tv, t_audio=ta,
+                            imgvid_cond_timestep=max(float(tv), 0.999),
+                            audio_ref_cond_timestep=max(float(ta), 1.0))
+                        with torch.inference_mode():
+                            _v2, _a2 = model(**fk2)
+                        return float(_v2.float().std())
+
+                    _v_step0 = _g_fwd(float(t_v), float(t_a))
+                    _v_hi = _g_fwd(1.0, 1.0)
+                    _v_lo = _g_fwd(0.03, 0.03)
+
+                    def _te_stat(tag, idx):
+                        if len(_cap["time"]) <= idx:
+                            return
+                        t = _cap["time"][idx]
+                        print("H3_SENS G time_emb[%s] shape=%s mean=%.5f std=%.5f amax=%.5f"
+                              % (tag, tuple(t.shape), float(t.mean()), float(t.std()),
+                                 float(t.abs().max())), flush=True)
+
+                    _te_stat("step0", 0)
+                    _te_stat("hi", 1)
+                    _te_stat("lo", 2)
+                    if len(_cap["time"]) >= 3:
+                        _td = float((_cap["time"][1] - _cap["time"][2]).abs().max())
+                        _td0 = float((_cap["time"][0] - _cap["time"][2]).abs().max())
+                        print("H3_SENS G time_emb max|hi-lo|=%.6f max|step0-lo|=%.6f"
+                              % (_td, _td0), flush=True)
+
+                    def _ad_stat(tag):
+                        if not _cap[tag]:
+                            return
+                        o = _cap[tag][-1]
+                        names = ("shift_msa", "scale_msa", "gate_msa",
+                                 "shift_mlp", "scale_mlp", "gate_mlp")
+                        vals = " ".join("%s=%.4f" % (n, float(x.abs().mean()))
+                                        for n, x in zip(names, o))
+                        print("H3_SENS G %s %s" % (tag, vals), flush=True)
+
+                    _ad_stat("a0")
+                    _ad_stat("a25")
+                    print("H3_SENS G v_std step0=%.5f hi=%.5f lo=%.5f"
+                          % (_v_step0, _v_hi, _v_lo), flush=True)
+
+                    _h_time_h.remove()
+                    _h_a0_h.remove()
+                    if _h_a25_h is not None:
+                        _h_a25_h.remove()
+                except Exception as _ex:
+                    print("H3_SENS G failed: %r" % (_ex,), flush=True)
+
+                # (H) 抓送入 DiT 的 embeddings(packed sequence)：条件/潜变量是否进序列。
+                try:
+                    _emb_cap = {}
+                    _orig_embed = model._embed
+
+                    def _wrap_embed(self, **kw):
+                        emb, te = _orig_embed(**kw)
+                        _emb_cap["emb"] = emb.detach().float().cpu().clone()
+                        return emb, te
+                    model._embed = _wrap_embed.__get__(model, type(model))
+                    with torch.inference_mode():
+                        _vh, _ah = model(**positive.forward_kwargs(
+                            video_rows=video_rows, audio_rows=audio_rows,
+                            t_video=float(t_v), t_audio=float(t_a),
+                            imgvid_cond_timestep=max(float(t_v), 0.999),
+                            audio_ref_cond_timestep=max(float(t_a), 1.0)))
+                    model._embed = _orig_embed
+                    emb = _emb_cap.get("emb")
+                    if emb is None:
+                        print("H3_SENS H failed: no emb captured", flush=True)
+                    else:
+                        print("H3_SENS H emb shape=%s overall_std=%.5f mean=%.5f amax=%.5f"
+                              % (tuple(emb.shape), float(emb.std()),
+                                 float(emb.mean()), float(emb.abs().max())),
+                              flush=True)
+                        _upd = positive.update_mask_dev.detach().cpu()
+                        if emb.shape[1] == _upd.shape[0]:
+                            _vrows = emb[0][_upd]
+                            _crows = emb[0][~_upd]
+                            print("H3_SENS H video_target_rows n=%d std=%.5f mean=%.5f ; "
+                                  "cond_rows n=%d std=%.5f mean=%.5f"
+                                  % (_vrows.shape[0], float(_vrows.std()),
+                                     float(_vrows.mean()), _crows.shape[0],
+                                     float(_crows.std()), float(_crows.mean())),
+                                  flush=True)
+                        def _grp(name, pos):
+                            if pos is None or pos.numel() == 0:
+                                return
+                            p = pos.view(-1).to(torch.long).detach().cpu()
+                            g = emb[0][p]
+                            print("H3_SENS H grp=%-6s n=%d std=%.5f mean=%.5f amax=%.5f"
+                                  % (name, p.numel(), float(g.std()),
+                                     float(g.mean()), float(g.abs().max())),
+                                  flush=True)
+                        _grp("img", positive.img_pos_dev)
+                        _grp("audio", positive.audio_pos_dev)
+                        _grp("text", getattr(positive, "text_pos_dev", None))
+                except Exception as _ex:
+                    print("H3_SENS H failed: %r" % (_ex,), flush=True)
+
+            if os.environ.get("H3_V_DIAG", "0") == "1":
+                with torch.no_grad():
+                    _x = video_rows[update]
+                    _v = mv_video_t
+                    _init_std = _x.std()
+                    _cov_x = (_v * _x).mean()
+                    _corr_x = float(_cov_x / max(float(_v.std() * _init_std), 1e-9))
+                    _x0 = minimax_h3_rf_v_to_x0(
+                        _x, _v, torch.tensor(t_v, dtype=torch.float32, device=device))
+                    print(
+                        f"H3_V_DIAG step={step} t={float(t_v):.4f} "
+                        f"v_std={float(_v.std()):.4f} v_amax={float(_v.abs().max()):.4g} "
+                        f"corr_v_x={_corr_x:.4f} "
+                        f"x0_std={float(_x0.std()):.4f} "
+                        f"corr_x0_x={float((_x0 * _x).mean() / max(float(_x0.std() * _init_std), 1e-9)):.4f}",
+                        flush=True)
+
+            x0_video = minimax_h3_rf_v_to_x0(
+                video_rows[update],
+                mv_video_t,
+                torch.tensor(t_v, dtype=torch.float32, device=device),
+            )
+            new_target = minimax_h3_euler_eta0_step(video_rows[update], x0_video, sigma_curr=s_v, sigma_next=s_v_next)
+            video_rows = video_rows.clone()
+            video_rows[update] = new_target
+            if cond_anchor is not None:
+                video_rows[~update] = cond_anchor  # per-step imgvid cond reset
+
+            x0_audio = minimax_h3_rf_v_to_x0(
+                audio_rows[audio_update],
+                mv_audio_t,
+                torch.tensor(t_a, dtype=torch.float32, device=device),
+            )
+            new_audio = minimax_h3_euler_eta0_step(
+                audio_rows[audio_update], x0_audio, sigma_curr=s_a, sigma_next=s_a_next
+            )
+            audio_rows = audio_rows.clone()
+            audio_rows[audio_update] = new_audio
+            if audio_anchor is not None:
+                audio_rows[~audio_update] = audio_anchor  # per-step audio ref reset
+            if on_step is not None:
+                on_step(step, video_rows, audio_rows)
+
+    return video_rows, audio_rows
+
+
+__all__ = [
+    "MINIMAX_H3_AUDIO_REF_COND_TIMESTEP",
+    "MINIMAX_H3_AUDIO_ROW_WIDTH",
+    "MINIMAX_H3_IMGVID_COND_TIMESTEP",
+    "MINIMAX_H3_VIDEO_ROW_WIDTH",
+    "MiniMaxH3DenoiseBranch",
+    "minimax_h3_denoise_loop",
+]

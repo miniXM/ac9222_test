@@ -1,0 +1,121 @@
+INFO 10-05 01:13:23 [importing.py:88] Triton not installed or not compatible; certain GPU-related functions will not be available.
+ERROR 10-05 01:13:26 [config.py:29] Failed to import Triton kernels. Please make sure your triton version is compatible. Error: No module named 'triton'
+INFO 10-05 01:13:26 [patch.py:252] NVFP4 W4A4 weight_scale NaN-clamp: installed.
+INFO 10-05 01:13:26 [patch.py:481] [cumem-cuda] CuMemAllocator._python_free_callback patched: asleep guard extended to all platforms.
+WARNING 10-05 01:13:29 [ring_globals.py:73] FlashInfer is unavailable; falling back to other attention backends. Reason: No module named 'flashinfer'
+### encode_video source ###
+    @torch.inference_mode()
+    def encode_video(
+        self,
+        frames: Any,
+    ) -> tuple[torch.Tensor, tuple[int, int, int]]:
+        parameter = next(self.parameters())
+        previous_dtype = parameter.dtype
+        if previous_dtype != torch.float32:
+            self.to(torch.float32)
+        devices = [parameter.device] if parameter.device.type == "cuda" else []
+        try:
+            with torch.random.fork_rng(devices=devices):
+                torch.default_generator.manual_seed(MINIMAX_H3_KEYFRAME_ENCODE_SEED)
+                for device in devices:
+                    with torch.cuda.device(device):
+                        torch.cuda.manual_seed(MINIMAX_H3_KEYFRAME_ENCODE_SEED)
+                latent = self.model.encode_videos(
+                    frames,
+                    use_fp16_latent=True,
+                )[0]
+        finally:
+            if previous_dtype != torch.float32:
+                self.to(previous_dtype)
+
+        latent = latent.float().cpu()
+        if latent.ndim == 4:
+            latent = latent[None]
+        channels = int(self.config_dict["latent_channels"])
+        if latent.ndim != 5 or int(latent.shape[1]) != channels:
+            raise ValueError(f"unexpected reference video latent shape {tuple(latent.shape)}")
+        shape = (
+            int(latent.shape[2]),
+            int(latent.shape[3]),
+            int(latent.shape[4]),
+        )
+        mean = torch.tensor(
+            self.config_dict["latents_mean"],
+        ).view(1, channels, 1, 1, 1)
+        std = torch.tensor(
+            self.config_dict["latents_std"],
+        ).view(1, channels, 1, 1, 1)
+        rows = minimax_h3_patchify_video_latent(
+            (latent - mean) / std,
+            patch_size=(1, 2, 2),
+        ).float()
+        return rows, shape
+
+The config attributes {'vae_ratio': 16, 'vae_ratio_t': 4} were passed to AutoencoderKLLegacy, but are not expected and will be ignored. Please verify your config.json configuration file.
+VAE loaded 37.7s  dtype=torch.float32
+clip (40, 256, 256, 3)
+Traceback (most recent call last):
+  File "/tmp/_vae_rt2.py", line 52, in <module>
+    enc = m.encode_video(frames_np)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/omni/venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/omni/src/vllm-omni-0.26.0/vllm_omni/diffusion/models/minimax_h3/vae.py", line 220, in encode_video
+    latent = self.model.encode_videos(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/omni/venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ac922/.cache/huggingface/modules/transformers_modules/video_vae/e7edf8d93de46b79/klvae.py", line 1072, in encode_videos
+    video_latent = self.encode_base(video, False)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ac922/.cache/huggingface/modules/transformers_modules/video_vae/e7edf8d93de46b79/klvae.py", line 1238, in encode_base
+    moments = self.encode_temporal(input)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ac922/.cache/huggingface/modules/transformers_modules/video_vae/e7edf8d93de46b79/klvae.py", line 488, in encode_temporal
+    z = self._adaptive_encode(clip_x)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ac922/.cache/huggingface/modules/transformers_modules/video_vae/e7edf8d93de46b79/klvae.py", line 433, in _adaptive_encode
+    return self.tiled_encode(x)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ac922/.cache/huggingface/modules/transformers_modules/video_vae/e7edf8d93de46b79/klvae.py", line 323, in tiled_encode
+    encoded_tasks = self._run_tile_tasks(
+                    ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ac922/.cache/huggingface/modules/transformers_modules/video_vae/e7edf8d93de46b79/klvae.py", line 292, in _run_tile_tasks
+    tasks.append(forward_fn(tiles[idx]))
+                 ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ac922/.cache/huggingface/modules/transformers_modules/video_vae/e7edf8d93de46b79/klvae.py", line 1204, in encode
+    h = self.encoder(x)
+        ^^^^^^^^^^^^^^^
+  File "/srv/omni/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/omni/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ac922/.cache/huggingface/modules/transformers_modules/video_vae/e7edf8d93de46b79/vae_cnn.py", line 290, in forward
+    h = maybe_checkpoint(self, self.down[i_level].block[i_block], h, zq)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ac922/.cache/huggingface/modules/transformers_modules/video_vae/e7edf8d93de46b79/attention.py", line 34, in maybe_checkpoint
+    return function(*args)
+           ^^^^^^^^^^^^^^^
+  File "/srv/omni/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/omni/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ac922/.cache/huggingface/modules/transformers_modules/video_vae/e7edf8d93de46b79/vae_cnn.py", line 162, in forward
+    h = self.conv1(h)
+        ^^^^^^^^^^^^^
+  File "/srv/omni/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/omni/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ac922/.cache/huggingface/modules/transformers_modules/video_vae/e7edf8d93de46b79/conv.py", line 80, in forward
+    return F.conv3d(
+           ^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 14.34 GiB. GPU 0 has a total capacity of 15.77 GiB of which 3.35 GiB is free. Including non-PyTorch memory, this process has 12.42 GiB memory in use. Of the allocated memory 11.99 GiB is allocated by PyTorch, and 65.14 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

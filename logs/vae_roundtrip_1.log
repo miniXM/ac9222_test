@@ -1,0 +1,99 @@
+INFO 10-05 01:08:25 [importing.py:88] Triton not installed or not compatible; certain GPU-related functions will not be available.
+ERROR 10-05 01:08:27 [config.py:29] Failed to import Triton kernels. Please make sure your triton version is compatible. Error: No module named 'triton'
+INFO 10-05 01:08:28 [patch.py:252] NVFP4 W4A4 weight_scale NaN-clamp: installed.
+INFO 10-05 01:08:28 [patch.py:481] [cumem-cuda] CuMemAllocator._python_free_callback patched: asleep guard extended to all platforms.
+WARNING 10-05 01:08:31 [ring_globals.py:73] FlashInfer is unavailable; falling back to other attention backends. Reason: No module named 'flashinfer'
+### source of encode_image ###
+    @torch.inference_mode()
+    def encode_image(self, image: Image.Image) -> torch.Tensor:
+        previous_parallel = self.model.parallel_tiling
+        self.model.parallel_tiling = False
+        parameter = next(self.parameters())
+        previous_dtype = parameter.dtype
+        if previous_dtype != torch.float32:
+            self.to(torch.float32)
+        devices = [parameter.device] if parameter.device.type == "cuda" else []
+        try:
+            with torch.random.fork_rng(devices=devices):
+                torch.default_generator.manual_seed(MINIMAX_H3_KEYFRAME_ENCODE_SEED)
+                for device in devices:
+                    with torch.cuda.device(device):
+                        torch.cuda.manual_seed(MINIMAX_H3_KEYFRAME_ENCODE_SEED)
+                latent = self.model.encode_images(
+                    image,
+                    use_fp16_latent=True,
+                )[0]
+        finally:
+            self.model.parallel_tiling = previous_parallel
+            if previous_dtype != torch.float32:
+                self.to(previous_dtype)
+
+        # Match the reference contract exactly: normalization and patchify
+        # happen on CPU in FP32 after the sampled encode. The condition noise
+        # path is sensitive enough that doing these elementwise operations on
+        # CUDA can noticeably change the final conditioned video.
+        latent = latent.float().cpu()
+        if latent.ndim == 4:
+            latent = latent[None]
+        channels = int(self.config_dict["latent_channels"])
+        mean = torch.tensor(
+            self.config_dict["latents_mean"],
+        ).view(1, channels, 1, 1, 1)
+        std = torch.tensor(
+            self.config_dict["latents_std"],
+        ).view(1, channels, 1, 1, 1)
+        return minimax_h3_patchify_video_latent(
+            (latent - mean) / std,
+            patch_size=(1, 2, 2),
+        ).float()
+
+### source of decode_latent ###
+    @torch.inference_mode()
+    def decode_latent(self, latent: torch.Tensor) -> torch.Tensor:
+        channels = int(self.config_dict["latent_channels"])
+        mean = torch.tensor(
+            self.config_dict["latents_mean"],
+            device=latent.device,
+            dtype=latent.dtype,
+        ).view(1, channels, 1, 1, 1)
+        std = torch.tensor(
+            self.config_dict["latents_std"],
+            device=latent.device,
+            dtype=latent.dtype,
+        ).view(1, channels, 1, 1, 1)
+        decoded = self.model.decode_base(latent * std + mean)
+        frames = self.model.processor.revert_tensor(decoded)
+        if frames.ndim == 4:
+            frames = frames.unsqueeze(0).transpose(1, 2)
+        if frames.ndim != 5:
+            raise ValueError(f"unexpected decoded video shape {tuple(frames.shape)}")
+        return frames.float()
+
+CFG latents_mean[:6] [0.858, -0.961, 1.066, -0.509, -0.273, -1.368]
+CFG latents_std[:6]  [1.222, 1.277, 1.683, 1.755, 1.564, 2.194]
+CFG mean.global= -0.0858 std.global= 1.7108
+The config attributes {'vae_ratio': 16, 'vae_ratio_t': 4} were passed to AutoencoderKLLegacy, but are not expected and will be ignored. Please verify your config.json configuration file.
+VAE loaded in 38.3s
+ref size (512, 512)
+[ENC_latent] shape=(256, 96) dtype=torch.float32 finite=True min=-3.7356 max=3.6391 mean=-0.0493 std=1.1255
+ENC per-chan mean[:8] [-1.192, -1.197, -0.98, -0.976, -0.011, 0.022, -0.038, -0.044]
+ENC per-chan std [:8] [-1.192, -1.197, -0.98, -0.976, -0.011, 0.022, -0.038, -0.044]
+Traceback (most recent call last):
+  File "/tmp/_vae_rt.py", line 63, in <module>
+    variants["raw"] = m.decode_latent(z)
+                      ^^^^^^^^^^^^^^^^^^
+  File "/srv/omni/venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/omni/src/vllm-omni-0.26.0/vllm_omni/diffusion/models/minimax_h3/vae.py", line 264, in decode_latent
+    decoded = self.model.decode_base(latent * std + mean)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ac922/.cache/huggingface/modules/transformers_modules/video_vae/e7edf8d93de46b79/klvae.py", line 797, in decode_base
+    recon = self.decode_temporal(z)
+            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ac922/.cache/huggingface/modules/transformers_modules/video_vae/e7edf8d93de46b79/klvae.py", line 717, in decode_temporal
+    return self._decode_temporal_streaming(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ac922/.cache/huggingface/modules/transformers_modules/video_vae/e7edf8d93de46b79/klvae.py", line 576, in _decode_temporal_streaming
+    raise ValueError(
+ValueError: decode_temporal streaming planned non-positive output_frames=-4 total_frames=0 pad_frames=4
