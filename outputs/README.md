@@ -11,3 +11,13 @@
 **核心对照**：把 `h3_reference_input.png` → `h3_vae_rt_fp32_fmid.png`（VAE 自己编解码，正常）
 和 `h3_reference_input.png` → `h3_sdpa_frame_mid.png`（完整 pipeline，马赛克）放在一起看，
 问题就锁定在 DiT 产出的 latent，而不是 VAE。
+
+## FA-V100 轮（2026-10-05 补）
+
+| 文件 | 说明 |
+|---|---|
+| `h3_fav100_256x256.mp4` | **真·FA-V100 kernel 跑出的视频**：637,179B，39帧，统计量与 SDPA 版几乎相同（亮度均值 158.03 vs 158） |
+| `h3_fav100_frame_first/mid/last.png` | FA-V100 输出帧 —— **与 SDPA 的马赛克形态一致** |
+
+→ 两个完全不同的 attention kernel（torch SDPA vs V100 FA CUDA）产出相同的错误结果，
+**attention 实现彻底排除**。详见 `../h3_custom/FA_V100_NOTES.md` 与 `../ANALYSIS.md`。

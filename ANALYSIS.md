@@ -35,13 +35,36 @@ HTTP 200, 637KB MP4, 39 帧, 256×256 @24fps, 含音轨
 
 ---
 
-## 2. A/B 实验：attention 无嫌疑
+## 2. A/B 实验：attention 实现彻底排除（含真·FA-V100）
 
 | 实验 | 结果 | 结论 |
 |---|---|---|
 | **A：`--diffusion-attention-backend TORCH_SDPA`** | 见上，马赛克 | 链路通、内容坏 |
-| **B：`--diffusion-attention-backend FLASH_ATTN`** | 日志显示 `Resolved diffusion attention backend 'SDPA' ... via attention_config.default` | **selector 静默回退成 SDPA**。无 flashinfer、sm70 版 flash-attn 未注册 → **FLASH_ATTN 根本没被启用过，B 轮不可测 → attention 排除嫌疑** |
+| **B：真·FA-V100**（`flash_attn_v100` v1.2.0 SM70 kernel） | kernel 实际执行（`/tmp/h3_fa_v100_used.txt: USED varlen fp16 (4124,14,128)`）；step0 `v_std=0.3844`、`corr=0.924`；MP4 637,179B，同样的 16×16 马赛克 | **与 SDPA 统计相同** |
 | 对照：`H3_NO_FP16_PATCH=1`（纯 bf16） | `RuntimeError: v must be finite` @ `scheduling_minimax_h3_euler_ancestral.py:12/29` | **历史"黑视频/NaN"根因实锤**：V100 上纯 bf16 DiT 直接 NaN；`h3_fp16_mixed` 是能跑的必要条件 |
+
+**B 轮为什么之前"测不了"，以及怎么打通的（重要，别再踩）：**
+
+`flash_attn_v100` 是真实存在的 ppc64le SM70 编译 kernel（28MB .so），但被三道门挡死：
+
+1. 只装在生产 `/opt/conda/envs/vllm`，omni 测试 venv 里没有 → 拷贝过去即可
+2. `platforms/cuda/platform.py :: has_flash_attn_package()` **按 GPU 名字拉黑**：
+   `"Turing"/"Tesla"/"T4" in gpu_name → return False`，"Tesla V100-SXM2" 直接命中
+3. 同文件 `get_diffusion_attn_backend_cls()`：`compute_supported = capability >= 80`，sm_70 不过
+
+另外 `flash_attn_v100` **没有 varlen kernel**（只有 dense `flash_attn_func`，且只吃 fp16），
+而 H3 走 packed varlen（cu_seqlens）。打通方案：
+
+- 造一个 `flash_attn` shim 包：`flash_attn_varlen_func` = 按 cu_seqlens 分段循环调 dense kernel，
+  bf16→fp16 自动转换（shim 源码见仓库外 `scripts/_fa_shim_src.py`，思路写在此处备查）
+- platform.py 两道门用 `H3_FA_V100=1` 环境变量旁路（备份 `.bak_fav100_*`）
+
+单元测试：dense fp16 与 varlen（分段 97+155 / 128+128+64）对 fp32 SDPA 参考
+**cos = 1.000000**（absmax 2.4e-4 / 4.2e-4）。kernel 数学正确。
+
+**最终结论：torch SDPA（分段模拟）与真·FA-V100 CUDA kernel 产出统计上相同的速度场
+（v_std 0.3845 vs 0.3844，corr 0.924 vs 0.924，输出同为 16×16 马赛克）
+→ attention 实现彻底排除，病灶在上游。**
 
 ---
 
@@ -113,8 +136,9 @@ denoise 8 步约 1:49（15.6s/it，峰值 10.3GB），真正的时间大头是�
 ## 7. 已明确**不要**再走的弯路
 
 - 不要再试 `H3_DEQUANT_MODE=1`（TP=4 必 OOM）
-- 不要指望 `--diffusion-attention-backend FLASH_ATTN` 生效（会静默回退 SDPA）
 - 不要为了排障升级 PyTorch 2.10 → 2.11：本轮结论与 torch 版本无关，
   且升级要重编 vLLM 0.26 的 CUDA 扩展（`cuda_view.cu` 的 ABI 适配得重做），会引入全新变量。
-  upgrde 应作为**第二阶段**独立进行。
+  upgrade 应作为**第二阶段**独立进行。
 - 不要用 `pkill -f 'vllm-omni serve'` 停服务（会杀掉启动脚本自己）
+- FA-V100 一次 illegal memory access 会**污染整张卡的 CUDA 上下文**，同卡后续全部报错 ——
+  换张卡重试即可，不是 kernel 坏。
